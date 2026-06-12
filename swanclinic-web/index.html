@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#00ADBE">
+<title>Swan Clinic — Phòng Khám Chuyên Khoa Thẩm Mỹ | TP. Hồ Chí Minh</title>
+<meta name="description" content="Swan Clinic — Phòng khám chuyên khoa thẩm mỹ tại TP. Hồ Chí Minh. Chuyên sâu trẻ hóa, tạo hình và thẩm mỹ: tiêm filler/botox, căng chỉ, nâng mũi, thẩm mỹ mắt, nâng ngực, hút mỡ.">
+<meta property="og:title" content="Swan Clinic — Phòng Khám Chuyên Khoa Thẩm Mỹ">
+<meta property="og:description" content="Giải pháp làm đẹp an toàn, tự nhiên và chuẩn y khoa cho từng khách hàng.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.swanclinic.vn">
+<meta property="og:locale" content="vi_VN">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Noto+Sans+Thai:wght@400;600&family=Noto+Sans+KR:wght@400;600&family=Noto+Sans+SC:wght@400;600&family=Noto+Sans+Khmer:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme:only light;
+  --brand:#00ADBE;
+  --brand-deep:#017E8C;
+  --brand-ink:#024A56;
+  --brand-tint:#D9F1F4;
+  --ink:#0C3138;
+  --ink-soft:#48626B;
+  --ivory:#FBFAF6;
+  --mist:#EAF6F7;
+  --mist-2:#F3FAFB;
+  --line:#E6E2D7;
+  --line-cool:#CDE8EB;
+  --gold:#C6A767;
+  --white:#fff;
+  --shadow:0 18px 50px -28px rgba(6,56,64,.45);
+  --shadow-sm:0 8px 24px -16px rgba(6,56,64,.4);
+  --shadow-brand:0 20px 50px -26px rgba(0,173,190,.55);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;color-scheme:only light;background:#FBFAF6}
+body{font-family:"Be Vietnam Pro",system-ui,sans-serif;color:var(--ink);background:var(--ivory);
+  line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body.lang-th{font-family:"Noto Sans Thai","Be Vietnam Pro",sans-serif}
+body.lang-ko{font-family:"Noto Sans KR","Be Vietnam Pro",sans-serif}
+body.lang-zh{font-family:"Noto Sans SC","Be Vietnam Pro",sans-serif}
+body.lang-km{font-family:"Noto Sans Khmer","Be Vietnam Pro",sans-serif}
+.wrap{width:min(1180px,92vw);margin-inline:auto}
+.serif{font-family:"Cormorant Garamond",serif}
+h1,h2,h3{font-family:"Cormorant Garamond",serif;font-weight:600;line-height:1.1;color:var(--ink);letter-spacing:.2px}
+body.lang-th h1,body.lang-th h2,body.lang-th h3,body.lang-th .serif,
+body.lang-ko h1,body.lang-ko h2,body.lang-ko h3,body.lang-ko .serif,
+body.lang-zh h1,body.lang-zh h2,body.lang-zh h3,body.lang-zh .serif,
+body.lang-km h1,body.lang-km h2,body.lang-km h3,body.lang-km .serif{font-family:inherit;font-weight:600}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+.eyebrow{font-family:"Anton",sans-serif;text-transform:uppercase;letter-spacing:.26em;font-size:.74rem;color:var(--brand-deep)}
+.eyebrow.vi{font-family:"Be Vietnam Pro";font-weight:700;letter-spacing:.16em}
+.eyebrow::before{content:"";display:inline-block;width:26px;height:2px;background:var(--brand);
+  vertical-align:middle;margin-right:12px;transform:translateY(-3px)}
+.h2-rule{display:block;width:54px;height:3px;background:var(--brand);border-radius:2px;margin-top:1rem}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:.55em;font-family:"Be Vietnam Pro";font-weight:600;
+  font-size:.95rem;padding:.82em 1.5em;border-radius:999px;transition:.25s ease;cursor:pointer;
+  border:1.5px solid transparent;white-space:nowrap}
+.btn-primary{background:var(--brand);color:#fff;box-shadow:var(--shadow-brand)}
+.btn-primary:hover{background:var(--brand-deep);transform:translateY(-2px)}
+.btn-ghost{border-color:var(--brand);color:var(--brand-deep)}
+.btn-ghost:hover{background:var(--brand);color:#fff}
+.btn-white{background:#fff;color:var(--brand-deep)}
+.btn-white:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+
+/* header */
+header{position:sticky;top:0;z-index:80;background:rgba(251,250,246,.82);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:1.1rem;padding:.6rem 0}
+.brand img{height:58px;width:auto;display:block}
+.nav-links{display:flex;gap:1.5rem;align-items:center}
+.nav-links a{font-size:.92rem;font-weight:500;color:var(--ink-soft);position:relative;padding:.2em 0}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:-2px;height:2px;width:0;background:var(--brand);transition:.25s}
+.nav-links a:hover{color:var(--ink)}.nav-links a:hover::after{width:100%}
+.nav-cta{display:flex;align-items:center;gap:.7rem}
+.hot{font-weight:700;color:var(--brand-deep);font-size:.92rem;white-space:nowrap}
+
+/* language switcher */
+.lang{position:relative}
+.lang-btn{display:inline-flex;align-items:center;gap:.4rem;background:var(--mist);border:1px solid var(--line-cool);
+  color:var(--brand-deep);font-weight:600;font-size:.85rem;padding:.5em .8em;border-radius:999px;cursor:pointer;
+  font-family:"Be Vietnam Pro";transition:.2s}
+.lang-btn:hover{background:var(--brand-tint)}
+.lang-btn svg{width:16px;height:16px}
+.lang-menu{position:absolute;right:0;top:calc(100% + 8px);background:#fff;border:1px solid var(--line);
+  border-radius:14px;box-shadow:var(--shadow);padding:.4rem;min-width:170px;display:none;z-index:90}
+.lang-menu.open{display:block;animation:pop .18s ease}
+@keyframes pop{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.lang-menu button{display:flex;align-items:center;gap:.6rem;width:100%;background:none;border:0;cursor:pointer;
+  padding:.55em .7em;border-radius:9px;font-size:.9rem;color:var(--ink);font-family:"Be Vietnam Pro";text-align:left}
+.lang-menu button:hover{background:var(--mist)}
+.lang-menu button.active{background:var(--brand-tint);color:var(--brand-deep);font-weight:600}
+.lang-menu .flag{font-size:1.1rem;line-height:1}
+.burger{display:none;background:none;border:0;cursor:pointer;padding:.3rem}
+.burger span{display:block;width:24px;height:2px;background:var(--ink);margin:5px 0;transition:.3s}
+
+/* hero */
+.hero{position:relative;padding:clamp(3rem,7vw,5.5rem) 0 clamp(2.5rem,5vw,4rem);
+  background:radial-gradient(120% 90% at 78% 8%,var(--mist) 0%,rgba(234,246,247,0) 55%),var(--ivory)}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(2rem,5vw,4.5rem);align-items:center}
+.hero h1{font-size:clamp(2.7rem,6vw,4.6rem);margin:.5rem 0 0}
+.hero h1 em{font-style:italic;color:var(--brand)}
+.hero p.lead{font-size:1.12rem;color:var(--ink-soft);margin:1.4rem 0 2rem;max-width:36ch}
+.hero-cta{display:flex;gap:.9rem;flex-wrap:wrap}
+.hero-figure{position:relative}
+.hero-figure img{border-radius:16px 16px 120px 16px;box-shadow:var(--shadow);
+  aspect-ratio:4/4.7;object-fit:cover;object-position:center;width:100%}
+.hero-figure .ring{position:absolute;inset:-16px -16px auto auto;width:130px;height:130px;
+  border:2px solid var(--brand);border-radius:50%;opacity:.35;z-index:0}
+.hero-badge{position:absolute;left:-12px;bottom:28px;background:#fff;border-radius:14px;
+  padding:.85rem 1.1rem;box-shadow:var(--shadow);display:flex;gap:.7rem;align-items:center;z-index:2}
+.hero-badge b{font-family:"Cormorant Garamond";font-size:1.9rem;color:var(--brand);line-height:1}
+body.lang-th .hero-badge b,body.lang-ko .hero-badge b,body.lang-zh .hero-badge b,body.lang-km .hero-badge b{font-family:inherit}
+.hero-badge span{font-size:.74rem;color:var(--ink-soft);line-height:1.3;max-width:14ch}
+
+/* trust strip — brand */
+.trust{background:linear-gradient(100deg,var(--brand) 0%,var(--brand-deep) 100%);color:#eafafb}
+.trust .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;padding:1.7rem 0}
+.trust .item{display:flex;flex-direction:column;gap:.15rem}
+.trust b{font-family:"Cormorant Garamond";font-size:1.6rem;color:#fff;font-weight:600}
+body.lang-th .trust b,body.lang-ko .trust b,body.lang-zh .trust b,body.lang-km .trust b{font-family:inherit}
+.trust small{font-size:.78rem;opacity:.9}
+.trust .item:not(:first-child){position:relative}
+.trust .item:not(:first-child)::before{content:"";position:absolute;left:-.75rem;top:6px;bottom:6px;
+  width:1px;background:rgba(255,255,255,.28)}
+
+/* sections */
+section{padding:clamp(3.4rem,7vw,6rem) 0}
+.sec-head{max-width:62ch}
+.sec-head h2{font-size:clamp(2rem,4.4vw,3.1rem);margin:.4rem 0 0}
+.sec-head p{color:var(--ink-soft);font-size:1.05rem;margin-top:1.1rem}
+
+/* about */
+.about{background:var(--white);border-block:1px solid var(--line)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,4.5rem);align-items:center}
+.about-figure{position:relative;border-radius:16px;overflow:hidden;box-shadow:var(--shadow)}
+.about-figure img{aspect-ratio:5/4;object-fit:cover;width:100%}
+.about-figure::after{content:"";position:absolute;inset:0;border:1px solid rgba(255,255,255,.4);
+  border-radius:16px;pointer-events:none}
+.about-points{margin-top:1.7rem;display:grid;gap:1rem}
+.about-points li{list-style:none;display:flex;gap:.8rem;align-items:flex-start}
+.about-points .dot{flex:none;width:28px;height:28px;border-radius:50%;background:var(--brand);
+  color:#fff;display:grid;place-items:center;margin-top:2px;font-size:.85rem}
+.about-points b{font-weight:600}.about-points span{color:var(--ink-soft);font-size:.95rem}
+
+/* services */
+.svc-group{margin-top:2.6rem}
+.svc-group h3{font-size:1.7rem;display:flex;align-items:center;gap:.8rem;margin-bottom:.2rem}
+.svc-group h3 .tag{font-family:"Be Vietnam Pro";font-size:.7rem;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:#fff;background:var(--brand);padding:.34em .85em;border-radius:999px}
+.svc-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.1rem;margin-top:1.3rem}
+.svc-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:1.5rem 1.4rem;
+  transition:.28s ease;position:relative;overflow:hidden}
+.svc-card::after{content:"";position:absolute;left:0;top:0;height:3px;width:0;background:var(--brand);transition:.3s}
+.svc-card:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:var(--line-cool)}
+.svc-card:hover::after{width:100%}
+.svc-card .ico{width:44px;height:44px;border-radius:11px;background:var(--mist);color:var(--brand-deep);
+  display:grid;place-items:center;margin-bottom:.9rem}
+.svc-card .ico svg{width:24px;height:24px}
+.svc-card h4{font-family:"Cormorant Garamond";font-size:1.45rem;font-weight:600;color:var(--ink);margin-bottom:.3rem}
+body.lang-th .svc-card h4,body.lang-ko .svc-card h4,body.lang-zh .svc-card h4,body.lang-km .svc-card h4{font-family:inherit}
+.svc-card p{font-size:.92rem;color:var(--ink-soft)}
+.svc-note{font-size:.85rem;color:var(--ink-soft);font-style:italic;margin-top:1.2rem;
+  padding:.9rem 1.1rem;background:var(--mist);border-left:3px solid var(--brand);border-radius:0 10px 10px 0}
+.svc-band{display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem;margin-top:2.6rem;border-radius:16px;overflow:hidden}
+.svc-band figure{position:relative;overflow:hidden;aspect-ratio:3/4}
+.svc-band img{width:100%;height:100%;object-fit:cover;transition:.5s;filter:saturate(.97)}
+.svc-band figure:hover img{transform:scale(1.05)}
+.svc-band figcaption{position:absolute;left:0;right:0;bottom:0;padding:1.3rem .9rem .75rem;color:#fff;
+  font-size:.8rem;font-weight:500;background:linear-gradient(transparent,rgba(2,30,36,.82));
+  opacity:0;transition:.3s}
+.svc-band figure:hover figcaption{opacity:1}
+
+/* gallery */
+.gallery{background:linear-gradient(160deg,#024A56 0%,#016273 100%);color:#eafaff}
+.gallery .sec-head h2{color:#fff}
+.gallery .sec-head p{color:#a9d6db}
+.gallery .eyebrow{color:#7fe3ec}.gallery .eyebrow::before{background:#7fe3ec}
+.gal-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-top:2.6rem}
+.gal-item{position:relative;border-radius:14px;overflow:hidden;aspect-ratio:3/2}
+.gal-item img{width:100%;height:100%;object-fit:cover;transition:.6s}
+.gal-item:hover img{transform:scale(1.05)}
+.gal-item figcaption{position:absolute;left:0;right:0;bottom:0;padding:1.5rem 1.2rem .9rem;color:#fff;
+  font-size:.92rem;font-weight:500;background:linear-gradient(transparent,rgba(6,56,64,.8));
+  opacity:0;transform:translateY(8px);transition:.3s}
+.gal-item:hover figcaption{opacity:1;transform:none}
+
+/* pricing */
+.pricing{background:var(--mist-2);border-block:1px solid var(--line-cool)}
+.price-table{margin-top:2rem;background:#fff;border:1px solid var(--line-cool);border-radius:18px;overflow:hidden;box-shadow:var(--shadow-sm)}
+.price-row{display:grid;grid-template-columns:1.3fr 2fr 1fr;gap:1rem;padding:1.15rem 1.6rem;align-items:center;border-bottom:1px solid var(--line-cool)}
+.price-row:last-child{border-bottom:0}
+.price-row.head{background:linear-gradient(100deg,var(--brand),var(--brand-deep));color:#fff;font-size:.78rem;
+  letter-spacing:.08em;text-transform:uppercase;font-weight:600;padding-block:.95rem}
+.price-row:not(.head):hover{background:var(--mist)}
+.price-row .name{font-family:"Cormorant Garamond";font-size:1.3rem;font-weight:600;color:var(--ink)}
+body.lang-th .price-row .name,body.lang-ko .price-row .name,body.lang-zh .price-row .name,body.lang-km .price-row .name{font-family:inherit}
+.price-row .desc{font-size:.9rem;color:var(--ink-soft)}
+.price-row .cost{text-align:right;font-weight:700;color:var(--brand-deep);white-space:nowrap}
+.price-note{font-size:.85rem;color:var(--ink-soft);margin-top:1.1rem;font-style:italic}
+.price-note a{color:var(--brand-deep);font-weight:600}
+
+/* doctors */
+.docs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem;margin-top:2.6rem}
+.doc-card{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;transition:.28s}
+.doc-card:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
+.doc-photo{position:relative;aspect-ratio:4/5;overflow:hidden;background:var(--mist)}
+.doc-photo img{width:100%;height:100%;object-fit:cover;transition:.5s}
+.doc-card:hover .doc-photo img{transform:scale(1.04)}
+.doc-photo .role{position:absolute;left:0;bottom:0;right:0;padding:1.6rem 1.2rem .85rem;
+  background:linear-gradient(transparent,rgba(6,56,64,.85));color:#fff}
+.doc-photo .role .deg{font-family:"Anton";font-size:.72rem;letter-spacing:.14em;color:#7fe3ec}
+.doc-photo .role h3{color:#fff;font-size:1.5rem;margin-top:.1rem}
+body.lang-th .doc-photo .role h3,body.lang-ko .doc-photo .role h3,body.lang-zh .doc-photo .role h3,body.lang-km .doc-photo .role h3{font-family:inherit}
+.doc-body{padding:1.2rem 1.3rem 1.5rem}
+.doc-body .spec{font-size:.82rem;font-weight:700;letter-spacing:.04em;color:var(--brand-deep);text-transform:uppercase;margin-bottom:.55rem}
+.doc-body p{font-size:.9rem;color:var(--ink-soft)}
+
+/* CTA band */
+.cta-band{background:linear-gradient(110deg,var(--brand) 0%,var(--brand-deep) 100%);color:#fff;position:relative;overflow:hidden}
+.cta-band .swan-bg{position:absolute;right:-2%;top:50%;transform:translateY(-50%);width:280px;opacity:.12;color:#fff}
+.cta-inner{display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;position:relative}
+.cta-inner h2{color:#fff;font-size:clamp(1.8rem,3.6vw,2.7rem);max-width:18ch}
+.cta-inner p{color:#dff6f8;margin-top:.6rem;max-width:40ch}
+
+/* contact */
+.contact{background:var(--white);border-top:1px solid var(--line)}
+.contact-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(2rem,5vw,4rem);align-items:stretch}
+.contact-info{display:grid;gap:1.3rem;align-content:start}
+.ci{display:flex;gap:1rem;align-items:flex-start}
+.ci .ico{flex:none;width:44px;height:44px;border-radius:12px;background:var(--brand);color:#fff;display:grid;place-items:center}
+.ci b{display:block;font-weight:600;font-size:.95rem}
+.ci span,.ci a{color:var(--ink-soft);font-size:.95rem}
+.ci a:hover{color:var(--brand-deep)}
+.map{border-radius:18px;overflow:hidden;border:1px solid var(--line);min-height:360px;box-shadow:var(--shadow-sm)}
+.map iframe{width:100%;height:100%;min-height:360px;border:0;display:block}
+.socials{display:flex;gap:.7rem;margin-top:.5rem}
+.socials a{width:42px;height:42px;border-radius:12px;border:1px solid var(--line-cool);display:grid;place-items:center;
+  color:var(--brand-deep);transition:.25s}
+.socials a:hover{background:var(--brand);color:#fff;border-color:var(--brand);transform:translateY(-2px)}
+
+/* footer */
+footer{background:var(--brand-ink);color:#bfe3e7}
+.foot{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:2rem;padding:3.4rem 0 2rem}
+.foot img.flogo{height:52px;margin-bottom:1rem}
+.foot p{font-size:.88rem;color:#9fcfd5;max-width:38ch}
+.foot h5{font-family:"Anton";font-size:.78rem;letter-spacing:.16em;color:#fff;text-transform:uppercase;margin-bottom:1rem;font-weight:400}
+.foot ul{list-style:none;display:grid;gap:.55rem}
+.foot ul a,.foot ul li{font-size:.9rem;color:#bfe3e7}
+.foot ul a:hover{color:#fff}
+.legal{border-top:1px solid rgba(255,255,255,.12);padding:1.3rem 0;font-size:.78rem;color:#8fc3c9;
+  display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.legal b{color:#cfeef1;font-weight:600}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(22px);transition:.7s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+
+@media(max-width:920px){
+  .nav-links,.hot{display:none}
+  .brand img{height:48px}
+  .hero-grid,.about-grid,.contact-grid,.cta-inner{grid-template-columns:1fr}
+  .hero-figure{order:-1;max-width:440px;margin-inline:auto}
+  .burger{display:block}
+  .docs-grid{grid-template-columns:1fr;max-width:430px;margin-inline:auto}
+  .foot{grid-template-columns:1fr}
+  .mobile-open{display:flex!important;flex-direction:column;position:absolute;top:100%;left:0;right:0;
+    background:var(--ivory);border-bottom:1px solid var(--line);padding:1.2rem 4vw;gap:1.1rem}
+}
+@media(max-width:620px){
+  .trust .wrap{grid-template-columns:1fr 1fr;gap:1.2rem}
+  .trust .item:nth-child(3)::before{display:none}
+  .gal-grid{grid-template-columns:1fr}
+  .svc-band{grid-template-columns:1fr 1fr}
+  .gal-item figcaption{opacity:1;transform:none}
+  .price-row{grid-template-columns:1fr;gap:.25rem}
+  .price-row .cost{text-align:left}
+  .price-row.head{display:none}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto}.reveal{opacity:1;transform:none}}
+@media (prefers-color-scheme: dark){html,body{background:#FBFAF6 !important;color:var(--ink) !important}}
+</style>
+</head>
+<body class="lang-vi">
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top" aria-label="Swan Clinic"><img src="img/brand-dark.png" alt="Swan Clinic"></a>
+    <nav class="nav-links" id="navlinks">
+      <a href="#about" data-i18n="nav.about">Giới thiệu</a>
+      <a href="#services" data-i18n="nav.services">Dịch vụ</a>
+      <a href="#gallery" data-i18n="nav.gallery">Không gian</a>
+      <a href="#pricing" data-i18n="nav.pricing">Bảng giá</a>
+      <a href="#doctors" data-i18n="nav.doctors">Đội ngũ bác sĩ</a>
+      <a href="#contact" data-i18n="nav.contact">Liên hệ</a>
+    </nav>
+    <div class="nav-cta">
+      <span class="hot">☎ 0934 37 31 37</span>
+      <div class="lang">
+        <button class="lang-btn" id="langBtn" aria-haspopup="true" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 2.5 15 0 18M12 3c-2.5 2.5-2.5 15 0 18"/></svg>
+          <span id="langCur">VI</span>
+        </button>
+        <div class="lang-menu" id="langMenu" role="menu"></div>
+      </div>
+      <a class="btn btn-primary js-book" href="#" data-i18n="nav.book">Đặt hẹn</a>
+      <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<a id="top"></a>
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy reveal">
+      <p class="eyebrow vi" data-i18n="hero.eyebrow">Phòng khám chuyên khoa thẩm mỹ</p>
+      <h1 data-i18n="hero.title">Vẻ đẹp <em>tự nhiên</em>,<br>chuẩn y khoa</h1>
+      <p class="lead" data-i18n="hero.lead">Chuyên sâu trẻ hóa, tạo hình và thẩm mỹ — với đội ngũ bác sĩ chuyên khoa, công nghệ hiện đại và phác đồ cá nhân hóa cho từng khách hàng.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary js-book" href="#" data-i18n="hero.cta2">Đặt lịch tư vấn</a>
+        <a class="btn btn-ghost" href="#services" data-i18n="hero.cta1">Khám phá dịch vụ</a>
+      </div>
+    </div>
+    <div class="hero-figure reveal">
+      <img src="img/hero-recep.jpg" alt="Quầy lễ tân Swan Clinic">
+    </div>
+  </div>
+</section>
+
+<div class="trust">
+  <div class="wrap">
+    <div class="item"><b data-i18n="trust.1a">Chuyên khoa</b><small data-i18n="trust.1b">Thẩm mỹ &amp; tạo hình</small></div>
+    <div class="item"><b data-i18n="trust.2a">Bác sĩ CKI</b><small data-i18n="trust.2b">Đội ngũ đào tạo bài bản</small></div>
+    <div class="item"><b>98%</b><small data-i18n="trust.3b">Khách hàng hài lòng</small></div>
+    <div class="item"><b data-i18n="trust.4a">An toàn</b><small data-i18n="trust.4b">Chuẩn y khoa, minh bạch</small></div>
+  </div>
+</div>
+
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <div class="about-figure reveal"><img src="img/svc-tiem.jpg" alt="Bác sĩ Swan Clinic chăm sóc khách hàng"></div>
+    <div class="reveal">
+      <p class="eyebrow vi" data-i18n="about.eyebrow">Về Swan Clinic</p>
+      <h2 class="serif" data-i18n="about.title">Làm đẹp an toàn, tự nhiên<br>và đặt y khoa lên hàng đầu</h2>
+      <span class="h2-rule"></span>
+      <p style="color:var(--ink-soft);margin-top:1.1rem" data-i18n="about.body">Swan Clinic là phòng khám chuyên khoa thẩm mỹ chuyên sâu về trẻ hóa, tạo hình và thẩm mỹ. Chúng tôi kết hợp đội ngũ bác sĩ giàu kinh nghiệm, công nghệ hiện đại và phác đồ cá nhân hóa để mang đến giải pháp làm đẹp an toàn, tự nhiên và chuẩn y khoa cho từng khách hàng.</p>
+      <ul class="about-points">
+        <li><span class="dot">✦</span><div><b data-i18n="about.p1b">Bác sĩ chuyên khoa</b> <span data-i18n="about.p1s">— trực tiếp thăm khám, tư vấn và thực hiện.</span></div></li>
+        <li><span class="dot">✦</span><div><b data-i18n="about.p2b">Phác đồ cá nhân hóa</b> <span data-i18n="about.p2s">— thiết kế riêng theo tình trạng và mong muốn của bạn.</span></div></li>
+        <li><span class="dot">✦</span><div><b data-i18n="about.p3b">Minh bạch &amp; an toàn</b> <span data-i18n="about.p3s">— quy trình chuẩn y khoa, thông tin pháp lý rõ ràng.</span></div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow vi" data-i18n="svc.eyebrow">Dịch vụ</p>
+      <h2 class="serif" data-i18n="svc.title">Giải pháp thẩm mỹ toàn diện</h2>
+      <span class="h2-rule"></span>
+      <p data-i18n="svc.sub">Từ thẩm mỹ nội khoa không phẫu thuật đến tạo hình ngoại khoa — mỗi dịch vụ đều do bác sĩ chuyên khoa phụ trách.</p>
+    </div>
+
+    <div class="svc-group reveal">
+      <h3 class="serif"><span data-i18n="svc.noi">Nội khoa</span> <span class="tag" data-i18n="svc.noitag">Không phẫu thuật</span></h3>
+      <div class="svc-cards">
+        <div class="svc-card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 21l6-6m0 0l8-8 3 3-8 8H9v-3zm8-8l3-3 3 3-3 3"/></svg></div><h4 data-i18n="svc.tiem_h">Tiêm thẩm mỹ</h4><p data-i18n="svc.tiem_p">Filler, Botox, mesotherapy — trẻ hóa và tạo nét hài hòa, ít xâm lấn.</p></div>
+        <div class="svc-card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 18c4-10 12-10 16 0M4 6c4 10 12 10 16 0"/></svg></div><h4 data-i18n="svc.cang_h">Căng chỉ</h4><p data-i18n="svc.cang_p">Nâng cơ, trẻ hóa bằng chỉ — định hình đường nét, săn chắc tự nhiên.</p></div>
+      </div>
+    </div>
+
+    <div class="svc-group reveal">
+      <h3 class="serif"><span data-i18n="svc.ngoai">Ngoại khoa</span> <span class="tag" data-i18n="svc.ngoaitag">Phẫu thuật</span></h3>
+      <div class="svc-cards">
+        <div class="svc-card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3c-1 5-3 7-3 11a3 3 0 006 0c0-4-2-6-3-11z"/></svg></div><h4 data-i18n="svc.mui_h">Nâng mũi</h4><p data-i18n="svc.mui_p">Tạo dáng mũi cân đối, hài hòa với gương mặt.</p></div>
+        <div class="svc-card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 12s4-6 10-6 10 6 10 6-4 6-10 6S2 12 2 12z"/><circle cx="12" cy="12" r="2.5"/></svg></div><h4 data-i18n="svc.mi_h">Thẩm mỹ mắt / mí</h4><p data-i18n="svc.mi_p">Cắt mí, nhấn mí — đôi mắt sáng và có chiều sâu.</p></div>
+        <div class="svc-card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 8a4 4 0 118 0c0 5-4 5-4 10M12 8a4 4 0 10-8 0c0 5 4 5 4 10"/></svg></div><h4 data-i18n="svc.nguc_h">Nâng ngực</h4><p data-i18n="svc.nguc_p">Phẫu thuật tạo hình ngực, định hình vòng một tự nhiên.</p></div>
+        <div class="svc-card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 4h12l-2 16H8L6 4zm2 6h8"/></svg></div><h4 data-i18n="svc.hutmo_h">Hút mỡ / tạo hình</h4><p data-i18n="svc.hutmo_p">Định hình vóc dáng thon gọn, cân đối tỉ lệ cơ thể.</p></div>
+      </div>
+      <p class="svc-note" data-i18n="svc.note">Dịch vụ Nâng ngực và Hút mỡ / tạo hình được thực hiện tại các Bệnh viện Quốc tế hợp tác chuyên môn với Swan Clinic.</p>
+      <div class="svc-band reveal">
+        <figure><img src="img/svc-phau2.jpg" alt="Ê-kíp phẫu thuật tạo hình tại Swan Clinic"><figcaption data-i18n="svc.cap1">Phòng phẫu thuật</figcaption></figure>
+        <figure><img src="img/svc-phau4.jpg" alt="Bác sĩ thực hiện phẫu thuật thẩm mỹ"><figcaption data-i18n="svc.cap2">Bác sĩ chuyên khoa</figcaption></figure>
+        <figure><img src="img/svc-phau1.jpg" alt="Thực hiện thủ thuật thẩm mỹ"><figcaption data-i18n="svc.cap3">Quy trình chuẩn y khoa</figcaption></figure>
+        <figure><img src="img/svc-tiem.jpg" alt="Tư vấn và chăm sóc khách hàng"><figcaption data-i18n="svc.cap4">Chăm sóc tận tâm</figcaption></figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery" id="gallery">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow" data-i18n="gal.eyebrow">Không gian</p>
+      <h2 class="serif" data-i18n="gal.title">Không gian trải nghiệm</h2>
+      <p data-i18n="gal.sub">Không gian sang trọng, riêng tư và thư giãn — nơi mỗi khách hàng được chăm sóc trọn vẹn.</p>
+    </div>
+    <div class="gal-grid">
+      <figure class="gal-item reveal"><img src="img/gal-2.jpg" alt="Sảnh chờ Swan Clinic"><figcaption data-i18n="gal.cap1">Sảnh chờ</figcaption></figure>
+      <figure class="gal-item reveal"><img src="img/gal-1.jpg" alt="Khu ghế chờ Swan Clinic"><figcaption data-i18n="gal.cap2">Khu ghế chờ</figcaption></figure>
+      <figure class="gal-item reveal"><img src="img/gal-3.jpg" alt="Góc thư giãn Swan Clinic"><figcaption data-i18n="gal.cap3">Góc thư giãn</figcaption></figure>
+      <figure class="gal-item reveal"><img src="img/gal-4.jpg" alt="Không gian xanh Swan Clinic"><figcaption data-i18n="gal.cap4">Không gian xanh</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="pricing" id="pricing">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow vi" data-i18n="price.eyebrow">Bảng giá tham khảo</p>
+      <h2 class="serif" data-i18n="price.title">Chi phí dịch vụ</h2>
+      <span class="h2-rule"></span>
+      <p data-i18n="price.sub">Mức giá khởi điểm cho từng nhóm dịch vụ. Chi phí cụ thể được tư vấn sau khi bác sĩ thăm khám trực tiếp.</p>
+    </div>
+    <div class="price-table reveal">
+      <div class="price-row head"><div data-i18n="price.th_s">Dịch vụ</div><div data-i18n="price.th_d">Mô tả</div><div style="text-align:right" data-i18n="price.th_c">Chi phí từ</div></div>
+      <div class="price-row"><div class="name" data-i18n="svc.tiem_h">Tiêm thẩm mỹ</div><div class="desc" data-i18n="price.tiem_d">Filler, Botox, mesotherapy</div><div class="cost">5.000.000đ</div></div>
+      <div class="price-row"><div class="name" data-i18n="svc.cang_h">Căng chỉ</div><div class="desc" data-i18n="price.cang_d">Nâng cơ, trẻ hóa bằng chỉ</div><div class="cost">10.000.000đ</div></div>
+      <div class="price-row"><div class="name" data-i18n="svc.mui_h">Nâng mũi</div><div class="desc" data-i18n="price.mui_d">Tạo dáng mũi</div><div class="cost">25.000.000đ</div></div>
+      <div class="price-row"><div class="name" data-i18n="svc.mi_h">Thẩm mỹ mắt / mí</div><div class="desc" data-i18n="price.mi_d">Cắt mí, nhấn mí</div><div class="cost">15.000.000đ</div></div>
+      <div class="price-row"><div class="name" data-i18n="svc.nguc_h">Nâng ngực</div><div class="desc" data-i18n="price.nguc_d">Phẫu thuật tạo hình ngực</div><div class="cost">50.000.000đ</div></div>
+      <div class="price-row"><div class="name" data-i18n="svc.hutmo_h">Hút mỡ</div><div class="desc" data-i18n="price.hutmo_d">Thon gọn vóc dáng</div><div class="cost">15.000.000đ</div></div>
+    </div>
+    <p class="price-note reveal"><span data-i18n="price.note_a">* Bảng giá mang tính tham khảo. Chi phí thực tế phụ thuộc tình trạng và phác đồ riêng của mỗi khách hàng — vui lòng liên hệ </span><a href="tel:+84934373137">0934 37 31 37</a><span data-i18n="price.note_b"> để được tư vấn.</span></p>
+  </div>
+</section>
+
+<section class="doctors" id="doctors">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow vi" data-i18n="doc.eyebrow">Đội ngũ bác sĩ</p>
+      <h2 class="serif" data-i18n="doc.title">Những người trực tiếp đồng hành cùng bạn</h2>
+      <span class="h2-rule"></span>
+      <p data-i18n="doc.sub">Bác sĩ chuyên khoa giàu kinh nghiệm, được đào tạo chính quy và liên tục cập nhật chuyên môn.</p>
+    </div>
+    <div class="docs-grid">
+      <article class="doc-card reveal">
+        <div class="doc-photo"><img src="img/doc-quang.jpg" alt="ThS.BSCKI Nguyễn Bá Quang"><div class="role"><div class="deg">ThS.BSCKI</div><h3>Nguyễn Bá Quang</h3></div></div>
+        <div class="doc-body"><div class="spec" data-i18n="doc.d1_spec">Phẫu thuật tạo hình</div><p data-i18n="doc.d1_bio">Phụ trách chuyên môn phòng khám, với hơn 20 năm trong ngành Y và hơn 10 năm chuyên sâu Phẫu thuật tạo hình thẩm mỹ. Được đào tạo bài bản với văn bằng Thạc sĩ Ngoại khoa và Bác sĩ CKI Phẫu thuật tạo hình, thường xuyên cập nhật xu hướng y học tái tạo qua các hội nghị khoa học quốc tế.</p></div>
+      </article>
+      <article class="doc-card reveal">
+        <div class="doc-photo"><img src="img/doc-loc.jpg" alt="BSCKI Trần Đức Lộc"><div class="role"><div class="deg">BSCKI</div><h3>Trần Đức Lộc</h3></div></div>
+        <div class="doc-body"><div class="spec" data-i18n="doc.d2_spec">Tạo hình, tái tạo &amp; thẩm mỹ</div><p data-i18n="doc.d2_bio">Hơn 10 năm kinh nghiệm chuyên sâu trong lĩnh vực tạo hình và thẩm mỹ. Được đào tạo bài bản với bằng Chuyên khoa I về Ngoại khoa và Tạo hình thẩm mỹ, cùng nhiều chứng chỉ thực hành kỹ thuật thẩm mỹ nội khoa như tiêm filler, botox.</p></div>
+      </article>
+      <article class="doc-card reveal">
+        <div class="doc-photo"><img src="img/doc-hieu.jpg" alt="BSCKI Nguyễn Trung Hiếu"><div class="role"><div class="deg">BSCKI</div><h3>Nguyễn Trung Hiếu</h3></div></div>
+        <div class="doc-body"><div class="spec" data-i18n="doc.d3_spec">Trưởng phòng Kế hoạch Tổng hợp</div><p data-i18n="doc.d3_bio">Hơn 5 năm kinh nghiệm trong quản lý y tế, nội khoa và da liễu thẩm mỹ. Với nền tảng chuyên môn vững chắc, bác sĩ hướng đến các giải pháp điều trị khoa học, an toàn và phù hợp với từng khách hàng — cải thiện cả vẻ ngoài lẫn sự tự tin.</p></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <svg class="swan-bg" viewBox="0 0 100 100" aria-hidden="true"><path fill="currentColor" d="M50 12c-9 0-15 7-15 15 0 6 4 10 4 14-6 2-18 8-25 22 11-4 18-3 18-3-7 5-9 13-9 13 9-8 20-9 28-9 14 0 24-9 24-22 0-11-7-16-11-19 3-1 6-3 6-7 0-6-6-9-13-9z"/></svg>
+  <div class="wrap cta-inner reveal">
+    <div>
+      <h2 class="serif" data-i18n="cta.title">Sẵn sàng bắt đầu hành trình của bạn?</h2>
+      <p data-i18n="cta.sub">Nhắn tin để được bác sĩ tư vấn miễn phí và đặt lịch hẹn.</p>
+    </div>
+    <a class="btn btn-white js-book" href="#" data-i18n="cta.btn">Nhắn tin đặt hẹn</a>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="sec-head reveal" style="margin-bottom:2.4rem">
+      <p class="eyebrow vi" data-i18n="contact.eyebrow">Liên hệ</p>
+      <h2 class="serif" data-i18n="contact.title">Đặt lịch &amp; ghé thăm Swan Clinic</h2>
+      <span class="h2-rule"></span>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <div class="ci"><span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 21s-7-6.5-7-11a7 7 0 0114 0c0 4.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span><div><b data-i18n="contact.l_addr">Địa chỉ</b><span>219Bis Nguyễn Thị Minh Khai, Phường Cầu Ông Lãnh, TP. Hồ Chí Minh</span></div></div>
+        <div class="ci"><span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M5 4h4l2 5-3 2a12 12 0 005 5l2-3 5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></svg></span><div><b data-i18n="contact.l_hotline">Hotline</b><a href="tel:+84934373137">0934 37 31 37</a></div></div>
+        <div class="ci"><span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 6h18v12H3z"/><path d="M3 7l9 6 9-6"/></svg></span><div><b data-i18n="contact.l_email">Email</b><a href="mailto:swanclinic.khth@gmail.com">swanclinic.khth@gmail.com</a></div></div>
+        <div class="ci"><span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div><b data-i18n="contact.l_hours">Giờ hoạt động</b><span data-i18n="contact.v_hours">8:00 – 21:00 (Thứ 2 – Thứ 7)<br>8:00 – 18:00 (Chủ nhật)</span></div></div>
+        <div class="ci"><span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 5h16v14H4z"/><path d="M4 9h16"/></svg></span><div><b data-i18n="contact.l_connect">Kết nối với chúng tôi</b>
+          <div class="socials">
+            <a href="https://www.facebook.com/swanclinicvn" target="_blank" rel="noopener" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M13 22v-8h3l1-4h-4V8c0-1 .5-2 2-2h2V2.5C18 2.3 16.8 2 15.5 2 12.8 2 11 3.7 11 6.8V10H8v4h3v8z"/></svg></a>
+            <a href="https://www.instagram.com/swanclinicvn" target="_blank" rel="noopener" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+            <a href="https://www.tiktok.com/@swan.clinic" target="_blank" rel="noopener" aria-label="TikTok"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 3c.3 2.2 1.7 3.9 4 4.2v3c-1.5 0-2.9-.5-4-1.3V15a6 6 0 11-6-6c.3 0 .7 0 1 .1v3.1a3 3 0 102 2.8V3z"/></svg></a>
+          </div></div></div>
+      </div>
+      <div class="map reveal"><iframe title="Bản đồ Swan Clinic" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=219Bis%20Nguy%E1%BB%85n%20Th%E1%BB%8B%20Minh%20Khai,%20Qu%E1%BA%ADn%201,%20TP.%20H%E1%BB%93%20Ch%C3%AD%20Minh&output=embed"></iframe></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <div><img class="flogo" src="img/brand-light.png" alt="Swan Clinic"><p data-i18n="foot.tagline">Phòng khám chuyên khoa thẩm mỹ — chuyên sâu trẻ hóa, tạo hình và thẩm mỹ tại TP. Hồ Chí Minh.</p></div>
+    <div><h5 data-i18n="foot.h_links">Liên kết</h5><ul>
+      <li><a href="#about" data-i18n="nav.about">Giới thiệu</a></li>
+      <li><a href="#services" data-i18n="nav.services">Dịch vụ</a></li>
+      <li><a href="#gallery" data-i18n="nav.gallery">Không gian</a></li>
+      <li><a href="#pricing" data-i18n="nav.pricing">Bảng giá</a></li>
+      <li><a href="#doctors" data-i18n="nav.doctors">Đội ngũ bác sĩ</a></li>
+      <li><a href="#contact" data-i18n="nav.contact">Liên hệ</a></li>
+    </ul></div>
+    <div><h5 data-i18n="foot.h_contact">Liên hệ</h5><ul>
+      <li>219Bis Nguyễn Thị Minh Khai,<br>P. Cầu Ông Lãnh, TP. HCM</li>
+      <li><a href="tel:+84934373137">0934 37 31 37</a></li>
+      <li><a href="mailto:swanclinic.khth@gmail.com">swanclinic.khth@gmail.com</a></li>
+    </ul></div>
+  </div>
+  <div class="wrap legal">
+    <span><b>CÔNG TY TNHH SWAN CLINIC</b> · MST 0319071661 · GPHĐ KCB số 09839/HCM-GPHĐ</span>
+    <span data-i18n="foot.legal_r">© 2026 Swan Clinic. Bảo lưu mọi quyền.</span>
+  </div>
+</footer>
+
+<script>
+/* ====== Messenger link (xác nhận đúng page trước khi go-live) ====== */
+var MESSENGER="https://m.me/swanclinicvn";
+document.querySelectorAll('.js-book').forEach(function(a){a.href=MESSENGER;a.target="_blank";a.rel="noopener";});
+
+/* ====== i18n ====== */
+var LANGS=[
+ ["vi","🇻🇳","Tiếng Việt"],["en","🇬🇧","English"],["th","🇹🇭","ไทย"],
+ ["zh","🇨🇳","中文"],["fr","🇫🇷","Français"],["ko","🇰🇷","한국어"],["km","🇰🇭","ខ្មែរ"]
+];
+var T={
+ "nav.about":{vi:"Giới thiệu",en:"About",th:"เกี่ยวกับเรา",zh:"关于",fr:"À propos",ko:"소개",km:"អំពីយើង"},
+ "nav.services":{vi:"Dịch vụ",en:"Services",th:"บริการ",zh:"服务",fr:"Services",ko:"서비스",km:"សេវាកម្ម"},
+ "nav.gallery":{vi:"Không gian",en:"Space",th:"พื้นที่",zh:"空间",fr:"Espace",ko:"공간",km:"ទីកន្លែង"},
+ "nav.pricing":{vi:"Bảng giá",en:"Pricing",th:"ราคา",zh:"价格",fr:"Tarifs",ko:"가격",km:"តម្លៃ"},
+ "nav.doctors":{vi:"Đội ngũ bác sĩ",en:"Doctors",th:"ทีมแพทย์",zh:"医生团队",fr:"Médecins",ko:"의료진",km:"ក្រុមវេជ្ជបណ្ឌិត"},
+ "nav.contact":{vi:"Liên hệ",en:"Contact",th:"ติดต่อ",zh:"联系",fr:"Contact",ko:"문의",km:"ទំនាក់ទំនង"},
+ "nav.book":{vi:"Đặt hẹn",en:"Book now",th:"นัดหมาย",zh:"预约",fr:"Rendez-vous",ko:"예약",km:"ណាត់ជួប"},
+
+ "hero.eyebrow":{vi:"Phòng khám chuyên khoa thẩm mỹ",en:"Specialist aesthetic clinic",th:"คลินิกความงามเฉพาะทาง",zh:"专科医美诊所",fr:"Clinique esthétique spécialisée",ko:"전문 미용 클리닉",km:"គ្លីនិកសម្ផស្សឯកទេស"},
+ "hero.title":{vi:"Vẻ đẹp <em>tự nhiên</em>,<br>chuẩn y khoa",en:"<em>Natural</em> beauty,<br>medical standards",th:"ความงาม<em>เป็นธรรมชาติ</em><br>ตามมาตรฐานแพทย์",zh:"<em>自然</em>之美<br>医学标准",fr:"Beauté <em>naturelle</em>,<br>standard médical",ko:"<em>자연스러운</em> 아름다움,<br>의학적 기준",km:"សម្រស់<em>ធម្មជាតិ</em><br>តាមស្តង់ដារពេទ្យ"},
+ "hero.lead":{vi:"Chuyên sâu trẻ hóa, tạo hình và thẩm mỹ — với đội ngũ bác sĩ chuyên khoa, công nghệ hiện đại và phác đồ cá nhân hóa cho từng khách hàng.",en:"Specialising in rejuvenation, contouring and aesthetics — with specialist doctors, modern technology and a personalised plan for every client.",th:"เชี่ยวชาญด้านการฟื้นฟูความอ่อนเยาว์ การปรับรูปหน้าและความงาม โดยทีมแพทย์เฉพาะทาง เทคโนโลยีทันสมัย และแผนการรักษาเฉพาะบุคคล",zh:"专注于年轻化、塑形与美容——拥有专科医生、先进技术，并为每位客户量身定制方案。",fr:"Spécialisés en rajeunissement, remodelage et esthétique — avec des médecins spécialistes, des technologies modernes et un protocole personnalisé pour chaque client.",ko:"전문의, 현대적 기술, 개인 맞춤 프로그램으로 안티에이징·컨투어링·미용을 전문으로 합니다.",km:"ឯកទេសខាងការធ្វើឱ្យក្មេងឡើងវិញ ការកែសម្ផស្ស និងសម្រស់ — ជាមួយក្រុមវេជ្ជបណ្ឌិតឯកទេស បច្ចេកវិទ្យាទំនើប និងផែនការផ្ទាល់ខ្លួនសម្រាប់អតិថិជនម្នាក់ៗ។"},
+ "hero.cta1":{vi:"Khám phá dịch vụ",en:"Explore services",th:"ดูบริการ",zh:"探索服务",fr:"Voir les services",ko:"서비스 보기",km:"មើលសេវាកម្ម"},
+ "hero.cta2":{vi:"Đặt lịch tư vấn",en:"Book a consultation",th:"นัดปรึกษา",zh:"预约咨询",fr:"Prendre rendez-vous",ko:"상담 예약",km:"ណាត់ពិគ្រោះ"},
+ "hero.badge":{vi:"năm kinh nghiệm chuyên môn ngành Y",en:"years of medical expertise",th:"ปีประสบการณ์ทางการแพทย์",zh:"年医学专业经验",fr:"ans d'expertise médicale",ko:"년 의료 전문 경력",km:"ឆ្នាំនៃបទពិសោធន៍ផ្នែកវេជ្ជសាស្ត្រ"},
+
+ "trust.1a":{vi:"Chuyên khoa",en:"Specialist",th:"เฉพาะทาง",zh:"专科",fr:"Spécialisé",ko:"전문",km:"ឯកទេស"},
+ "trust.1b":{vi:"Thẩm mỹ & tạo hình",en:"Aesthetics & contouring",th:"ความงามและการปรับรูป",zh:"美容与塑形",fr:"Esthétique & remodelage",ko:"미용 & 컨투어링",km:"សម្ផស្ស និងការកែរូបរាង"},
+ "trust.2a":{vi:"Bác sĩ CKI",en:"Specialist doctors",th:"แพทย์เฉพาะทาง",zh:"专科医生",fr:"Médecins spécialistes",ko:"전문의",km:"វេជ្ជបណ្ឌិតឯកទេស"},
+ "trust.2b":{vi:"Đội ngũ đào tạo bài bản",en:"Formally trained team",th:"ทีมที่ได้รับการฝึกอบรม",zh:"专业培训团队",fr:"Équipe formée",ko:"정규 교육 팀",km:"ក្រុមដែលបានបណ្តុះបណ្តាល"},
+ "trust.3b":{vi:"Khách hàng hài lòng",en:"Client satisfaction",th:"ความพึงพอใจของลูกค้า",zh:"客户满意度",fr:"Clients satisfaits",ko:"고객 만족도",km:"ការពេញចិត្តរបស់អតិថិជន"},
+ "trust.4a":{vi:"An toàn",en:"Safe",th:"ปลอดภัย",zh:"安全",fr:"Sécurité",ko:"안전",km:"សុវត្ថិភាព"},
+ "trust.4b":{vi:"Chuẩn y khoa, minh bạch",en:"Medical standards, transparent",th:"มาตรฐานแพทย์ โปร่งใส",zh:"医学标准，透明",fr:"Standards médicaux, transparent",ko:"의학 기준, 투명성",km:"ស្តង់ដារពេទ្យ តម្លាភាព"},
+
+ "about.eyebrow":{vi:"Về Swan Clinic",en:"About Swan Clinic",th:"เกี่ยวกับ Swan Clinic",zh:"关于 Swan Clinic",fr:"À propos de Swan Clinic",ko:"Swan Clinic 소개",km:"អំពី Swan Clinic"},
+ "about.title":{vi:"Làm đẹp an toàn, tự nhiên<br>và đặt y khoa lên hàng đầu",en:"Beauty that is safe, natural<br>and medically grounded",th:"ความงามที่ปลอดภัย เป็นธรรมชาติ<br>และยึดหลักการแพทย์",zh:"安全、自然<br>且以医学为本的美",fr:"Une beauté sûre, naturelle<br>et fondée sur la médecine",ko:"안전하고 자연스러우며<br>의학에 기반한 아름다움",km:"សម្រស់ដែលមានសុវត្ថិភាព ធម្មជាតិ<br>និងផ្អែកលើគោលការណ៍ពេទ្យ"},
+ "about.body":{vi:"Swan Clinic là phòng khám chuyên khoa thẩm mỹ chuyên sâu về trẻ hóa, tạo hình và thẩm mỹ. Chúng tôi kết hợp đội ngũ bác sĩ giàu kinh nghiệm, công nghệ hiện đại và phác đồ cá nhân hóa để mang đến giải pháp làm đẹp an toàn, tự nhiên và chuẩn y khoa cho từng khách hàng.",en:"Swan Clinic is a specialist aesthetic clinic focused on rejuvenation, contouring and aesthetics. We combine experienced doctors, modern technology and personalised protocols to deliver beauty solutions that are safe, natural and medically sound for every client.",th:"Swan Clinic เป็นคลินิกความงามเฉพาะทางที่เน้นการฟื้นฟูความอ่อนเยาว์ การปรับรูปหน้าและความงาม เรารวมทีมแพทย์ผู้มีประสบการณ์ เทคโนโลยีทันสมัย และแผนเฉพาะบุคคล เพื่อมอบความงามที่ปลอดภัย เป็นธรรมชาติ และถูกต้องตามหลักการแพทย์สำหรับลูกค้าทุกคน",zh:"Swan Clinic 是一家专注于年轻化、塑形与美容的专科医美诊所。我们结合经验丰富的医生、先进技术与个性化方案，为每位客户提供安全、自然且符合医学标准的美丽方案。",fr:"Swan Clinic est une clinique esthétique spécialisée dans le rajeunissement, le remodelage et l'esthétique. Nous associons des médecins expérimentés, des technologies modernes et des protocoles personnalisés pour offrir des solutions de beauté sûres, naturelles et médicalement fondées à chaque client.",ko:"Swan Clinic은 안티에이징·컨투어링·미용에 특화된 전문 미용 클리닉입니다. 경험 많은 의료진, 현대적 기술, 맞춤형 프로그램을 결합해 모든 고객에게 안전하고 자연스러우며 의학적으로 검증된 솔루션을 제공합니다.",km:"Swan Clinic គឺជាគ្លីនិកសម្ផស្សឯកទេសដែលផ្តោតលើការធ្វើឱ្យក្មេងឡើងវិញ ការកែសម្ផស្ស និងសម្រស់។ យើងរួមបញ្ចូលក្រុមវេជ្ជបណ្ឌិតមានបទពិសោធន៍ បច្ចេកវិទ្យាទំនើប និងផែនការផ្ទាល់ខ្លួន ដើម្បីផ្តល់ដំណោះស្រាយសម្រស់ដែលមានសុវត្ថិភាព ធម្មជាតិ និងត្រឹមត្រូវតាមវេជ្ជសាស្ត្រសម្រាប់អតិថិជនម្នាក់ៗ។"},
+ "about.p1b":{vi:"Bác sĩ chuyên khoa",en:"Specialist doctors",th:"แพทย์เฉพาะทาง",zh:"专科医生",fr:"Médecins spécialistes",ko:"전문의",km:"វេជ្ជបណ្ឌិតឯកទេស"},
+ "about.p1s":{vi:"— trực tiếp thăm khám, tư vấn và thực hiện.",en:"— examine, advise and perform in person.",th:"— ตรวจ ให้คำปรึกษา และทำหัตถการด้วยตนเอง",zh:"— 亲自检查、咨询与操作。",fr:"— examinent, conseillent et opèrent en personne.",ko:"— 직접 진료·상담·시술합니다.",km:"— ពិនិត្យ ប្រឹក្សា និងអនុវត្តដោយផ្ទាល់។"},
+ "about.p2b":{vi:"Phác đồ cá nhân hóa",en:"Personalised protocol",th:"แผนเฉพาะบุคคล",zh:"个性化方案",fr:"Protocole personnalisé",ko:"맞춤형 프로그램",km:"ផែនការផ្ទាល់ខ្លួន"},
+ "about.p2s":{vi:"— thiết kế riêng theo tình trạng và mong muốn của bạn.",en:"— designed around your condition and goals.",th:"— ออกแบบตามสภาพและความต้องการของคุณ",zh:"— 根据您的状况与期望量身设计。",fr:"— conçu selon votre état et vos souhaits.",ko:"— 상태와 목표에 맞춰 설계합니다.",km:"— រចនាតាមស្ថានភាព និងបំណងរបស់អ្នក។"},
+ "about.p3b":{vi:"Minh bạch & an toàn",en:"Transparent & safe",th:"โปร่งใสและปลอดภัย",zh:"透明与安全",fr:"Transparent & sûr",ko:"투명 & 안전",km:"តម្លាភាព និងសុវត្ថិភាព"},
+ "about.p3s":{vi:"— quy trình chuẩn y khoa, thông tin pháp lý rõ ràng.",en:"— medical-grade process, clear legal information.",th:"— กระบวนการมาตรฐานแพทย์ ข้อมูลทางกฎหมายชัดเจน",zh:"— 医疗级流程，法律信息清晰。",fr:"— processus médical, informations légales claires.",ko:"— 의료 표준 절차, 명확한 법적 정보.",km:"— ដំណើរការតាមស្តង់ដារពេទ្យ ព័ត៌មានច្បាប់ច្បាស់លាស់។"},
+
+ "svc.eyebrow":{vi:"Dịch vụ",en:"Services",th:"บริการ",zh:"服务",fr:"Services",ko:"서비스",km:"សេវាកម្ម"},
+ "svc.title":{vi:"Giải pháp thẩm mỹ toàn diện",en:"Complete aesthetic solutions",th:"โซลูชันความงามครบวงจร",zh:"全面的美容方案",fr:"Des solutions esthétiques complètes",ko:"종합 미용 솔루션",km:"ដំណោះស្រាយសម្ផស្សពេញលេញ"},
+ "svc.sub":{vi:"Từ thẩm mỹ nội khoa không phẫu thuật đến tạo hình ngoại khoa — mỗi dịch vụ đều do bác sĩ chuyên khoa phụ trách.",en:"From non-surgical aesthetics to surgical contouring — every service is led by a specialist doctor.",th:"ตั้งแต่ความงามแบบไม่ผ่าตัดไปจนถึงการศัลยกรรม — ทุกบริการดูแลโดยแพทย์เฉพาะทาง",zh:"从非手术医美到外科塑形——每项服务均由专科医生主理。",fr:"De l'esthétique non chirurgicale au remodelage chirurgical — chaque service est dirigé par un médecin spécialiste.",ko:"비수술 시술부터 외과적 컨투어링까지 — 모든 서비스는 전문의가 담당합니다.",km:"ចាប់ពីសម្ផស្សគ្មានវះកាត់ ដល់ការកែរូបរាងតាមការវះកាត់ — សេវាកម្មនីមួយៗដឹកនាំដោយវេជ្ជបណ្ឌិតឯកទេស។"},
+ "svc.noi":{vi:"Nội khoa",en:"Non-surgical",th:"แบบไม่ผ่าตัด",zh:"非手术",fr:"Non chirurgical",ko:"비수술",km:"គ្មានវះកាត់"},
+ "svc.noitag":{vi:"Không phẫu thuật",en:"No surgery",th:"ไม่ผ่าตัด",zh:"无需手术",fr:"Sans chirurgie",ko:"수술 없음",km:"គ្មានវះកាត់"},
+ "svc.ngoai":{vi:"Ngoại khoa",en:"Surgical",th:"ศัลยกรรม",zh:"外科手术",fr:"Chirurgical",ko:"외과",km:"វះកាត់"},
+ "svc.ngoaitag":{vi:"Phẫu thuật",en:"Surgery",th:"ผ่าตัด",zh:"手术",fr:"Chirurgie",ko:"수술",km:"វះកាត់"},
+ "svc.tiem_h":{vi:"Tiêm thẩm mỹ",en:"Injectables",th:"ฉีดเสริมความงาม",zh:"注射美容",fr:"Injections esthétiques",ko:"주사 시술",km:"ការចាក់សម្ផស្ស"},
+ "svc.tiem_p":{vi:"Filler, Botox, mesotherapy — trẻ hóa và tạo nét hài hòa, ít xâm lấn.",en:"Filler, Botox, mesotherapy — gentle rejuvenation and harmonious definition.",th:"ฟิลเลอร์ โบท็อกซ์ เมโสเธอราพี — ฟื้นฟูความอ่อนเยาว์อย่างนุ่มนวล",zh:"填充、肉毒、水光——温和年轻化，自然轮廓。",fr:"Filler, Botox, mésothérapie — rajeunissement doux et harmonie du visage.",ko:"필러, 보톡스, 메조테라피 — 부드러운 안티에이징과 조화로운 윤곽.",km:"Filler, Botox, mesotherapy — ធ្វើឱ្យក្មេងឡើងវិញដោយថ្នមៗ និងសុខដុមរមនា។"},
+ "svc.cang_h":{vi:"Căng chỉ",en:"Thread lift",th:"ร้อยไหม",zh:"埋线提升",fr:"Fils tenseurs",ko:"실 리프팅",km:"ការទាញសរសៃ"},
+ "svc.cang_p":{vi:"Nâng cơ, trẻ hóa bằng chỉ — định hình đường nét, săn chắc tự nhiên.",en:"Lifting and rejuvenation with threads — natural definition and firmness.",th:"ยกกระชับและฟื้นฟูด้วยไหม — รูปหน้าชัด กระชับเป็นธรรมชาติ",zh:"以埋线提拉、年轻化——塑造轮廓，自然紧致。",fr:"Lifting et rajeunissement par fils — contours définis et fermeté naturelle.",ko:"실로 리프팅·안티에이징 — 자연스러운 윤곽과 탄력.",km:"លើកសាច់ដុំ និងធ្វើឱ្យក្មេងដោយសរសៃ — រូបរាងច្បាស់ និងរឹងមាំធម្មជាតិ។"},
+ "svc.mui_h":{vi:"Nâng mũi",en:"Rhinoplasty",th:"เสริมจมูก",zh:"隆鼻",fr:"Rhinoplastie",ko:"코 성형",km:"កែច្រមុះ"},
+ "svc.mui_p":{vi:"Tạo dáng mũi cân đối, hài hòa với gương mặt.",en:"A balanced nose shape, in harmony with your face.",th:"ปรับรูปจมูกให้ได้สัดส่วน กลมกลืนกับใบหน้า",zh:"塑造匀称鼻型，与面部和谐。",fr:"Une forme de nez équilibrée, en harmonie avec le visage.",ko:"얼굴과 조화로운 균형 잡힌 코 라인.",km:"រាងច្រមុះសមាមាត្រ សុខដុមនឹងមុខ។"},
+ "svc.mi_h":{vi:"Thẩm mỹ mắt / mí",en:"Eye & eyelid",th:"ตา / หนังตา",zh:"眼部 / 双眼皮",fr:"Yeux & paupières",ko:"눈 / 쌍꺼풀",km:"ភ្នែក / ត្របកភ្នែក"},
+ "svc.mi_p":{vi:"Cắt mí, nhấn mí — đôi mắt sáng và có chiều sâu.",en:"Double-eyelid surgery — bright, defined eyes.",th:"ทำตาสองชั้น — ดวงตาสดใส มีมิติ",zh:"双眼皮成形——明亮有神，富有层次。",fr:"Chirurgie des paupières — un regard lumineux et profond.",ko:"쌍꺼풀 수술 — 또렷하고 깊은 눈매.",km:"វះត្របកភ្នែក — ភ្នែកភ្លឺ និងមានជម្រៅ។"},
+ "svc.nguc_h":{vi:"Nâng ngực",en:"Breast augmentation",th:"เสริมหน้าอก",zh:"隆胸",fr:"Augmentation mammaire",ko:"가슴 성형",km:"កែសុដន់"},
+ "svc.nguc_p":{vi:"Phẫu thuật tạo hình ngực, định hình vòng một tự nhiên.",en:"Breast contouring surgery for a natural shape.",th:"ศัลยกรรมเสริมหน้าอกให้รูปทรงเป็นธรรมชาติ",zh:"乳房塑形手术，打造自然曲线。",fr:"Chirurgie de remodelage mammaire pour une forme naturelle.",ko:"자연스러운 라인을 위한 가슴 성형 수술.",km:"ការវះកាត់កែសុដន់ឱ្យមានរូបរាងធម្មជាតិ។"},
+ "svc.hutmo_h":{vi:"Hút mỡ / tạo hình",en:"Liposculpture",th:"ดูดไขมัน",zh:"吸脂塑形",fr:"Liposuccion",ko:"지방흡입",km:"បូមខ្លាញ់"},
+ "svc.hutmo_p":{vi:"Định hình vóc dáng thon gọn, cân đối tỉ lệ cơ thể.",en:"Slim, balanced body contouring.",th:"ปรับรูปร่างให้เพรียวและได้สัดส่วน",zh:"塑造纤细匀称的身形。",fr:"Un corps affiné et harmonieux.",ko:"날씬하고 균형 잡힌 바디 라인.",km:"កែរូបរាងឱ្យស្គម និងសមាមាត្រ។"},
+ "svc.note":{vi:"Dịch vụ Nâng ngực và Hút mỡ / tạo hình được thực hiện tại các Bệnh viện Quốc tế hợp tác chuyên môn với Swan Clinic.",en:"Breast augmentation and liposculpture are performed at International Hospitals partnered with Swan Clinic.",th:"บริการเสริมหน้าอกและดูดไขมันดำเนินการที่โรงพยาบาลนานาชาติที่ร่วมมือกับ Swan Clinic",zh:"隆胸与吸脂塑形于与 Swan Clinic 专业合作的国际医院进行。",fr:"L'augmentation mammaire et la liposuccion sont réalisées dans des hôpitaux internationaux partenaires de Swan Clinic.",ko:"가슴 성형과 지방흡입은 Swan Clinic과 제휴한 국제 병원에서 시행됩니다.",km:"សេវាកែសុដន់ និងបូមខ្លាញ់ ត្រូវបានអនុវត្តនៅមន្ទីរពេទ្យអន្តរជាតិដែលសហការជាមួយ Swan Clinic។"},
+
+ "svc.cap1":{vi:"Phòng phẫu thuật",en:"Operating room",th:"ห้องผ่าตัด",zh:"手术室",fr:"Bloc opératoire",ko:"수술실",km:"បន្ទប់វះកាត់"},
+ "svc.cap2":{vi:"Bác sĩ chuyên khoa",en:"Specialist doctors",th:"แพทย์เฉพาะทาง",zh:"专科医生",fr:"Médecins spécialistes",ko:"전문의",km:"វេជ្ជបណ្ឌិតឯកទេស"},
+ "svc.cap3":{vi:"Quy trình chuẩn y khoa",en:"Medical-grade process",th:"กระบวนการมาตรฐานแพทย์",zh:"医疗级流程",fr:"Processus médical",ko:"의료 표준 절차",km:"ដំណើរការតាមស្តង់ដារពេទ្យ"},
+ "svc.cap4":{vi:"Chăm sóc tận tâm",en:"Attentive care",th:"การดูแลอย่างใส่ใจ",zh:"贴心照护",fr:"Soin attentionné",ko:"세심한 케어",km:"ការថែទាំយកចិត្តទុកដាក់"},
+
+ "gal.eyebrow":{vi:"Không gian",en:"Our space",th:"พื้นที่ของเรา",zh:"空间",fr:"Notre espace",ko:"공간",km:"ទីកន្លែង"},
+ "gal.title":{vi:"Không gian trải nghiệm",en:"The experience space",th:"พื้นที่แห่งประสบการณ์",zh:"体验空间",fr:"L'espace expérience",ko:"경험 공간",km:"ទីកន្លែងបទពិសោធន៍"},
+ "gal.sub":{vi:"Không gian sang trọng, riêng tư và thư giãn — nơi mỗi khách hàng được chăm sóc trọn vẹn.",en:"An elegant, private and relaxing space — where every client is fully cared for.",th:"พื้นที่หรูหรา เป็นส่วนตัว และผ่อนคลาย — ที่ซึ่งลูกค้าทุกคนได้รับการดูแลอย่างเต็มที่",zh:"优雅、私密而放松的空间——每位客户都得到悉心照护。",fr:"Un espace élégant, intime et apaisant — où chaque client est pleinement choyé.",ko:"우아하고 프라이빗하며 편안한 공간 — 모든 고객을 세심하게 케어합니다.",km:"ទីកន្លែងប្រណីត ឯកជន និងស្រួល — ដែលអតិថិជនម្នាក់ៗទទួលបានការថែទាំពេញលេញ។"},
+ "gal.cap1":{vi:"Sảnh chờ",en:"Waiting lounge",th:"โถงพักรอ",zh:"等候区",fr:"Salon d'attente",ko:"대기 라운지",km:"កន្លែងរង់ចាំ"},
+ "gal.cap2":{vi:"Khu ghế chờ",en:"Seating area",th:"โซนที่นั่ง",zh:"休息座区",fr:"Espace assise",ko:"좌석 공간",km:"តំបន់កៅអី"},
+ "gal.cap3":{vi:"Góc thư giãn",en:"Relaxation corner",th:"มุมพักผ่อน",zh:"放松一角",fr:"Coin détente",ko:"휴식 코너",km:"ជ្រុងសម្រាក"},
+ "gal.cap4":{vi:"Không gian xanh",en:"Green space",th:"พื้นที่สีเขียว",zh:"绿意空间",fr:"Espace verdure",ko:"그린 공간",km:"ទីកន្លែងបៃតង"},
+
+ "price.eyebrow":{vi:"Bảng giá tham khảo",en:"Reference pricing",th:"ราคาอ้างอิง",zh:"参考价格",fr:"Tarifs indicatifs",ko:"참고 가격",km:"តម្លៃយោង"},
+ "price.title":{vi:"Chi phí dịch vụ",en:"Service pricing",th:"ค่าบริการ",zh:"服务费用",fr:"Tarifs des services",ko:"서비스 비용",km:"តម្លៃសេវាកម្ម"},
+ "price.sub":{vi:"Mức giá khởi điểm cho từng nhóm dịch vụ. Chi phí cụ thể được tư vấn sau khi bác sĩ thăm khám trực tiếp.",en:"Starting prices for each service group. Final cost is advised after an in-person examination.",th:"ราคาเริ่มต้นของแต่ละกลุ่มบริการ ค่าใช้จ่ายจริงแจ้งหลังแพทย์ตรวจ",zh:"各服务的起步价格。具体费用经医生面诊后确定。",fr:"Prix de départ par groupe de services. Le coût final est indiqué après un examen en personne.",ko:"각 서비스의 시작 가격입니다. 정확한 비용은 대면 진료 후 안내됩니다.",km:"តម្លៃចាប់ផ្តើមសម្រាប់ក្រុមសេវាកម្មនីមួយៗ។ តម្លៃពិតប្រាកដនឹងជូនដំណឹងបន្ទាប់ពីពិនិត្យ។"},
+ "price.th_s":{vi:"Dịch vụ",en:"Service",th:"บริการ",zh:"服务",fr:"Service",ko:"서비스",km:"សេវាកម្ម"},
+ "price.th_d":{vi:"Mô tả",en:"Description",th:"รายละเอียด",zh:"说明",fr:"Description",ko:"설명",km:"ការពិពណ៌នា"},
+ "price.th_c":{vi:"Chi phí từ",en:"From",th:"เริ่มต้น",zh:"起价",fr:"À partir de",ko:"부터",km:"ចាប់ពី"},
+ "price.tiem_d":{vi:"Filler, Botox, mesotherapy",en:"Filler, Botox, mesotherapy",th:"ฟิลเลอร์ โบท็อกซ์ เมโส",zh:"填充、肉毒、水光",fr:"Filler, Botox, mésothérapie",ko:"필러, 보톡스, 메조",km:"Filler, Botox, mesotherapy"},
+ "price.cang_d":{vi:"Nâng cơ, trẻ hóa bằng chỉ",en:"Thread lifting & rejuvenation",th:"ยกกระชับด้วยไหม",zh:"埋线提升与年轻化",fr:"Lifting par fils",ko:"실 리프팅",km:"ការទាញសរសៃ"},
+ "price.mui_d":{vi:"Tạo dáng mũi",en:"Nose reshaping",th:"ปรับรูปจมูก",zh:"鼻部塑形",fr:"Remodelage du nez",ko:"코 라인",km:"កែរាងច្រមុះ"},
+ "price.mi_d":{vi:"Cắt mí, nhấn mí",en:"Eyelid surgery",th:"ทำตาสองชั้น",zh:"双眼皮",fr:"Chirurgie des paupières",ko:"쌍꺼풀",km:"វះត្របកភ្នែក"},
+ "price.nguc_d":{vi:"Phẫu thuật tạo hình ngực",en:"Breast contouring surgery",th:"ศัลยกรรมหน้าอก",zh:"乳房塑形手术",fr:"Chirurgie mammaire",ko:"가슴 성형",km:"វះកាត់សុដន់"},
+ "price.hutmo_d":{vi:"Thon gọn vóc dáng",en:"Body contouring",th:"ปรับรูปร่าง",zh:"身形塑造",fr:"Remodelage corporel",ko:"바디 컨투어링",km:"កែរូបរាង"},
+ "price.note_a":{vi:"* Bảng giá mang tính tham khảo. Chi phí thực tế phụ thuộc tình trạng và phác đồ riêng của mỗi khách hàng — vui lòng liên hệ ",en:"* Prices are indicative. Actual cost depends on each client's condition and plan — please contact ",th:"* ราคาเป็นเพียงการอ้างอิง ค่าใช้จ่ายจริงขึ้นกับสภาพและแผนของแต่ละท่าน — กรุณาติดต่อ ",zh:"* 价格仅供参考。实际费用视个人状况与方案而定——请联系 ",fr:"* Prix indicatifs. Le coût réel dépend de l'état et du protocole de chaque client — veuillez contacter ",ko:"* 가격은 참고용입니다. 실제 비용은 개인 상태와 계획에 따라 다릅니다 — 문의: ",km:"* តម្លៃជាការយោង។ តម្លៃពិតអាស្រ័យលើស្ថានភាព និងផែនការរបស់អតិថិជន — សូមទាក់ទង "},
+ "price.note_b":{vi:" để được tư vấn.",en:" for a consultation.",th:" เพื่อรับคำปรึกษา",zh:" 进行咨询。",fr:" pour une consultation.",ko:" 상담 바랍니다.",km:" ដើម្បីពិគ្រោះ។"},
+
+ "doc.eyebrow":{vi:"Đội ngũ bác sĩ",en:"Our doctors",th:"ทีมแพทย์",zh:"医生团队",fr:"Nos médecins",ko:"의료진",km:"ក្រុមវេជ្ជបណ្ឌិត"},
+ "doc.title":{vi:"Những người trực tiếp đồng hành cùng bạn",en:"The people who care for you directly",th:"ผู้ที่ดูแลคุณโดยตรง",zh:"亲自陪伴您的团队",fr:"Ceux qui vous accompagnent directement",ko:"직접 함께하는 의료진",km:"អ្នកដែលថែទាំអ្នកដោយផ្ទាល់"},
+ "doc.sub":{vi:"Bác sĩ chuyên khoa giàu kinh nghiệm, được đào tạo chính quy và liên tục cập nhật chuyên môn.",en:"Experienced specialist doctors, formally trained and continually updating their expertise.",th:"แพทย์เฉพาะทางผู้มีประสบการณ์ ได้รับการฝึกอบรมและพัฒนาความรู้อย่างต่อเนื่อง",zh:"经验丰富的专科医生，受过正规培训并持续精进。",fr:"Des médecins spécialistes expérimentés, formés et constamment à jour.",ko:"정규 교육을 받고 지속적으로 전문성을 갱신하는 숙련된 전문의.",km:"វេជ្ជបណ្ឌិតឯកទេសមានបទពិសោធន៍ បានទទួលការបណ្តុះបណ្តាល និងធ្វើបច្ចុប្បន្នភាពជានិច្ច។"},
+ "doc.d1_spec":{vi:"Phẫu thuật tạo hình",en:"Plastic surgery",th:"ศัลยกรรมตกแต่ง",zh:"整形外科",fr:"Chirurgie plastique",ko:"성형외과",km:"វះកាត់កែសម្ផស្ស"},
+ "doc.d1_bio":{vi:"Phụ trách chuyên môn phòng khám, với hơn 20 năm trong ngành Y và hơn 10 năm chuyên sâu Phẫu thuật tạo hình thẩm mỹ. Được đào tạo bài bản với văn bằng Thạc sĩ Ngoại khoa và Bác sĩ CKI Phẫu thuật tạo hình, thường xuyên cập nhật xu hướng y học tái tạo qua các hội nghị khoa học quốc tế.",en:"Clinical lead, with over 20 years in medicine and more than 10 years specialising in aesthetic plastic surgery. Holds a Master's in Surgery and Level-I Specialist in Plastic Surgery, and regularly updates on reconstructive medicine at international conferences.",th:"หัวหน้าทางการแพทย์ของคลินิก ประสบการณ์ในวงการแพทย์กว่า 20 ปี และเชี่ยวชาญศัลยกรรมตกแต่งความงามกว่า 10 ปี จบปริญญาโทศัลยศาสตร์และแพทย์เฉพาะทางศัลยกรรมตกแต่ง ติดตามความรู้จากการประชุมระดับนานาชาติอย่างสม่ำเสมอ",zh:"诊所医疗负责人，从医逾20年，专注医美整形外科逾10年。拥有外科硕士及整形外科一级专科资格，并通过国际学术会议持续更新再生医学前沿。",fr:"Responsable clinique, plus de 20 ans en médecine et plus de 10 ans en chirurgie plastique esthétique. Titulaire d'un Master en Chirurgie et Spécialiste de niveau I en chirurgie plastique, il se forme régulièrement en médecine reconstructive lors de congrès internationaux.",ko:"클리닉 의료 총괄로 의료계 경력 20년 이상, 미용 성형외과 10년 이상. 외과 석사 및 성형외과 1급 전문의 자격을 보유하고 국제 학회를 통해 재생의학 최신 동향을 꾸준히 업데이트합니다.",km:"ប្រធានផ្នែកវេជ្ជសាស្ត្រនៃគ្លីនិក មានបទពិសោធន៍ជាង ២០ ឆ្នាំក្នុងវិស័យពេទ្យ និងជាង ១០ ឆ្នាំខាងវះកាត់កែសម្ផស្ស។ មានបរិញ្ញាបត្រជាន់ខ្ពស់ខាងវះកាត់ និងជាអ្នកឯកទេសវះកាត់កែសម្ផស្ស ហើយធ្វើបច្ចុប្បន្នភាពចំណេះដឹងតាមសន្និសីទអន្តរជាតិ។"},
+ "doc.d2_spec":{vi:"Tạo hình, tái tạo & thẩm mỹ",en:"Contouring, reconstruction & aesthetics",th:"ปรับรูป ฟื้นฟู และความงาม",zh:"塑形、重建与美容",fr:"Remodelage, reconstruction & esthétique",ko:"컨투어링·재건·미용",km:"កែរូបរាង ស្ដារ និងសម្ផស្ស"},
+ "doc.d2_bio":{vi:"Hơn 10 năm kinh nghiệm chuyên sâu trong lĩnh vực tạo hình và thẩm mỹ. Được đào tạo bài bản với bằng Chuyên khoa I về Ngoại khoa và Tạo hình thẩm mỹ, cùng nhiều chứng chỉ thực hành kỹ thuật thẩm mỹ nội khoa như tiêm filler, botox.",en:"Over 10 years of specialised experience in contouring and aesthetics. Formally trained with a Level-I Specialist degree in Surgery and Aesthetic Plastic Surgery, plus certifications in non-surgical techniques such as filler and Botox.",th:"ประสบการณ์เฉพาะทางด้านการปรับรูปและความงามกว่า 10 ปี จบแพทย์เฉพาะทางศัลยกรรมและศัลยกรรมตกแต่ง พร้อมใบรับรองหัตถการ เช่น ฟิลเลอร์ โบท็อกซ์",zh:"逾10年塑形与美容专业经验。持外科及整形美容一级专科学位，并取得填充、肉毒等非手术技术认证。",fr:"Plus de 10 ans d'expérience en remodelage et esthétique. Spécialiste de niveau I en chirurgie et chirurgie esthétique, avec des certifications en techniques non chirurgicales comme le filler et le Botox.",ko:"컨투어링·미용 분야 10년 이상의 전문 경력. 외과 및 미용 성형 1급 전문의 자격과 필러·보톡스 등 비수술 시술 인증을 보유.",km:"មានបទពិសោធន៍ឯកទេសជាង ១០ ឆ្នាំខាងកែរូបរាង និងសម្ផស្ស។ ជាអ្នកឯកទេសវះកាត់ និងកែសម្ផស្ស ព្រមទាំងមានវិញ្ញាបនបត្របច្ចេកទេសដូចជា filler និង Botox។"},
+ "doc.d3_spec":{vi:"Trưởng phòng Kế hoạch Tổng hợp",en:"Head of General Planning",th:"หัวหน้าฝ่ายวางแผนทั่วไป",zh:"综合计划部主任",fr:"Chef de la planification générale",ko:"종합기획부장",km:"ប្រធានផ្នែករៀបចំផែនការ"},
+ "doc.d3_bio":{vi:"Hơn 5 năm kinh nghiệm trong quản lý y tế, nội khoa và da liễu thẩm mỹ. Với nền tảng chuyên môn vững chắc, bác sĩ hướng đến các giải pháp điều trị khoa học, an toàn và phù hợp với từng khách hàng — cải thiện cả vẻ ngoài lẫn sự tự tin.",en:"Over 5 years in healthcare management, internal medicine and aesthetic dermatology. With a solid clinical foundation, he focuses on scientific, safe treatments tailored to each client — improving both appearance and confidence.",th:"ประสบการณ์กว่า 5 ปีด้านการบริหารการแพทย์ อายุรกรรมและผิวหนังความงาม ด้วยพื้นฐานที่แข็งแกร่ง มุ่งเน้นการรักษาที่ปลอดภัยและเหมาะกับแต่ละบุคคล เพื่อเสริมทั้งรูปลักษณ์และความมั่นใจ",zh:"逾5年医疗管理、内科及美容皮肤科经验。凭借扎实专业基础，致力于科学、安全且因人而异的治疗方案——同时提升外貌与自信。",fr:"Plus de 5 ans en gestion médicale, médecine interne et dermatologie esthétique. Fort d'une solide base clinique, il privilégie des traitements sûrs et adaptés à chaque client — pour la beauté comme pour la confiance.",ko:"의료 경영·내과·미용 피부과 5년 이상 경력. 탄탄한 임상 기반으로 과학적이고 안전한 맞춤 치료를 지향하며 외모와 자신감을 함께 높입니다.",km:"មានបទពិសោធន៍ជាង ៥ ឆ្នាំខាងគ្រប់គ្រងពេទ្យ ជំងឺផ្ទៃក្នុង និងសើស្បែកសម្ផស្ស។ ដោយមានមូលដ្ឋានរឹងមាំ គាត់ផ្តោតលើការព្យាបាលប្រកបដោយវិទ្យាសាស្ត្រ និងសុវត្ថិភាពសម្រាប់អតិថិជនម្នាក់ៗ។"},
+
+ "cta.title":{vi:"Sẵn sàng bắt đầu hành trình của bạn?",en:"Ready to begin your journey?",th:"พร้อมเริ่มต้นการเดินทางของคุณหรือยัง?",zh:"准备好开启您的旅程了吗？",fr:"Prêt à commencer votre parcours ?",ko:"여정을 시작할 준비가 되셨나요?",km:"ត្រៀមខ្លួនចាប់ផ្តើមដំណើររបស់អ្នកហើយឬនៅ?"},
+ "cta.sub":{vi:"Nhắn tin để được bác sĩ tư vấn miễn phí và đặt lịch hẹn.",en:"Message us for a free doctor consultation and to book an appointment.",th:"ทักแชทเพื่อรับคำปรึกษาจากแพทย์ฟรีและนัดหมาย",zh:"发送消息，获取医生免费咨询并预约。",fr:"Écrivez-nous pour une consultation gratuite et un rendez-vous.",ko:"메시지를 보내 무료 상담 및 예약을 진행하세요.",km:"ផ្ញើសារដើម្បីពិគ្រោះជាមួយវេជ្ជបណ្ឌិតដោយឥតគិតថ្លៃ និងណាត់ជួប។"},
+ "cta.btn":{vi:"Nhắn tin đặt hẹn",en:"Message to book",th:"แชทเพื่อนัดหมาย",zh:"发消息预约",fr:"Écrire pour réserver",ko:"메시지로 예약",km:"ផ្ញើសារណាត់ជួប"},
+
+ "contact.eyebrow":{vi:"Liên hệ",en:"Contact",th:"ติดต่อ",zh:"联系",fr:"Contact",ko:"문의",km:"ទំនាក់ទំនង"},
+ "contact.title":{vi:"Đặt lịch & ghé thăm Swan Clinic",en:"Book & visit Swan Clinic",th:"นัดหมายและเยี่ยมชม Swan Clinic",zh:"预约并到访 Swan Clinic",fr:"Réservez & visitez Swan Clinic",ko:"Swan Clinic 예약 및 방문",km:"ណាត់ជួប និងមកកាន់ Swan Clinic"},
+ "contact.l_addr":{vi:"Địa chỉ",en:"Address",th:"ที่อยู่",zh:"地址",fr:"Adresse",ko:"주소",km:"អាសយដ្ឋាន"},
+ "contact.l_hotline":{vi:"Hotline",en:"Hotline",th:"สายด่วน",zh:"热线",fr:"Hotline",ko:"전화",km:"ទូរស័ព្ទ"},
+ "contact.l_email":{vi:"Email",en:"Email",th:"อีเมล",zh:"邮箱",fr:"Email",ko:"이메일",km:"អ៊ីមែល"},
+ "contact.l_hours":{vi:"Giờ hoạt động",en:"Opening hours",th:"เวลาทำการ",zh:"营业时间",fr:"Horaires",ko:"운영 시간",km:"ម៉ោងបើក"},
+ "contact.v_hours":{vi:"8:00 – 21:00 (Thứ 2 – Thứ 7)<br>8:00 – 18:00 (Chủ nhật)",en:"8:00 – 21:00 (Mon – Sat)<br>8:00 – 18:00 (Sun)",th:"8:00 – 21:00 (จ. – ส.)<br>8:00 – 18:00 (อา.)",zh:"8:00 – 21:00（周一至周六）<br>8:00 – 18:00（周日）",fr:"8h00 – 21h00 (lun – sam)<br>8h00 – 18h00 (dim)",ko:"8:00 – 21:00 (월–토)<br>8:00 – 18:00 (일)",km:"8:00 – 21:00 (ច័ន្ទ–សៅរ៍)<br>8:00 – 18:00 (អាទិត្យ)"},
+ "contact.l_connect":{vi:"Kết nối với chúng tôi",en:"Connect with us",th:"ติดตามเรา",zh:"关注我们",fr:"Suivez-nous",ko:"소셜 채널",km:"ភ្ជាប់ជាមួយយើង"},
+
+ "foot.tagline":{vi:"Phòng khám chuyên khoa thẩm mỹ — chuyên sâu trẻ hóa, tạo hình và thẩm mỹ tại TP. Hồ Chí Minh.",en:"Specialist aesthetic clinic — rejuvenation, contouring and aesthetics in Ho Chi Minh City.",th:"คลินิกความงามเฉพาะทาง — ฟื้นฟู ปรับรูป และความงาม ในนครโฮจิมินห์",zh:"专科医美诊所——位于胡志明市，专注年轻化、塑形与美容。",fr:"Clinique esthétique spécialisée — rajeunissement, remodelage et esthétique à Hô-Chi-Minh-Ville.",ko:"호치민시의 전문 미용 클리닉 — 안티에이징·컨투어링·미용.",km:"គ្លីនិកសម្ផស្សឯកទេស — ការធ្វើឱ្យក្មេង កែរូបរាង និងសម្ផស្ស នៅទីក្រុងហូជីមិញ។"},
+ "foot.h_links":{vi:"Liên kết",en:"Links",th:"ลิงก์",zh:"链接",fr:"Liens",ko:"바로가기",km:"តំណ"},
+ "foot.h_contact":{vi:"Liên hệ",en:"Contact",th:"ติดต่อ",zh:"联系",fr:"Contact",ko:"문의",km:"ទំនាក់ទំនង"},
+ "foot.legal_r":{vi:"© 2026 Swan Clinic. Bảo lưu mọi quyền.",en:"© 2026 Swan Clinic. All rights reserved.",th:"© 2026 Swan Clinic สงวนลิขสิทธิ์",zh:"© 2026 Swan Clinic 版权所有。",fr:"© 2026 Swan Clinic. Tous droits réservés.",ko:"© 2026 Swan Clinic. 모든 권리 보유.",km:"© 2026 Swan Clinic. រក្សាសិទ្ធិគ្រប់យ៉ាង។"}
+};
+
+function applyLang(code){
+  document.querySelectorAll('[data-i18n]').forEach(function(el){
+    var k=el.getAttribute('data-i18n'); var v=T[k]&&T[k][code];
+    if(v!=null) el.innerHTML=v;
+  });
+  document.documentElement.lang=code;
+  document.body.className=document.body.className.replace(/lang-\w+/g,'').trim()+' lang-'+code;
+  document.getElementById('langCur').textContent=code.toUpperCase();
+  document.querySelectorAll('#langMenu button').forEach(function(b){
+    b.classList.toggle('active', b.dataset.code===code);
+  });
+  try{localStorage.setItem('swanlang',code);}catch(e){}
+}
+
+/* build language menu */
+var menu=document.getElementById('langMenu');
+LANGS.forEach(function(l){
+  var b=document.createElement('button');
+  b.dataset.code=l[0];
+  b.innerHTML='<span class="flag">'+l[1]+'</span> '+l[2];
+  b.onclick=function(){applyLang(l[0]); menu.classList.remove('open'); document.getElementById('langBtn').setAttribute('aria-expanded','false');};
+  menu.appendChild(b);
+});
+var lb=document.getElementById('langBtn');
+lb.onclick=function(e){e.stopPropagation();var o=menu.classList.toggle('open');lb.setAttribute('aria-expanded',o);};
+document.addEventListener('click',function(){menu.classList.remove('open');lb.setAttribute('aria-expanded','false');});
+
+/* init language (default vi) */
+var saved='vi'; try{saved=localStorage.getItem('swanlang')||'vi';}catch(e){}
+applyLang(saved);
+
+/* mobile menu */
+var burger=document.getElementById('burger'),nav=document.getElementById('navlinks');
+burger.addEventListener('click',function(){var open=nav.classList.toggle('mobile-open');burger.setAttribute('aria-expanded',open);});
+nav.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){nav.classList.remove('mobile-open');});});
+
+/* scroll reveal */
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+</script>
+</body>
+</html>
