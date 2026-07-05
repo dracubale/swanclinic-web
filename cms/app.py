@@ -39,7 +39,83 @@ def jsave(path, data):
 P_SITE    = os.path.join(CONTENT_DIR, "site.json")
 P_NEWS    = os.path.join(CONTENT_DIR, "news.json")
 P_DOCTORS = os.path.join(CONTENT_DIR, "doctors.json")
+P_TEXTS   = os.path.join(CONTENT_DIR, "texts.json")
 P_USERS   = os.path.join(DATA_DIR, "users.json")
+
+LANGS = [("vi","Tiếng Việt"),("en","English"),("th","ไทย (Thái)"),("zh","中文 (Trung)"),("fr","Français (Pháp)"),("ko","한국어 (Hàn)"),("km","ខ្មែរ (Campuchia)")]
+
+# (key, nhãn hiển thị, ô lớn?) — nhóm theo mục trên website
+EDITABLE = [
+ ("— TRANG ĐẦU (HERO) —", None, False),
+ ("hero.eyebrow","Dòng nhỏ trên tiêu đề",False),
+ ("hero.title","Tiêu đề lớn (cho phép <em>, <br>)",True),
+ ("hero.lead","Đoạn mô tả",True),
+ ("hero.cta2","Nút 1 (Đặt lịch tư vấn)",False),
+ ("hero.cta1","Nút 2 (Khám phá dịch vụ)",False),
+ ("— DẢI SỐ LIỆU —", None, False),
+ ("trust.1a","Ô 1 — chữ lớn",False),("trust.1b","Ô 1 — chữ nhỏ",False),
+ ("trust.2a","Ô 2 — chữ lớn",False),("trust.2b","Ô 2 — chữ nhỏ",False),
+ ("trust.3b","Ô 3 — chữ nhỏ (dưới 98%)",False),
+ ("trust.4a","Ô 4 — chữ lớn",False),("trust.4b","Ô 4 — chữ nhỏ",False),
+ ("— GIỚI THIỆU —", None, False),
+ ("about.title","Tiêu đề (cho phép <br>)",True),
+ ("about.body","Đoạn giới thiệu",True),
+ ("about.p1b","Điểm 1 — đậm",False),("about.p1s","Điểm 1 — mô tả",False),
+ ("about.p2b","Điểm 2 — đậm",False),("about.p2s","Điểm 2 — mô tả",False),
+ ("about.p3b","Điểm 3 — đậm",False),("about.p3s","Điểm 3 — mô tả",False),
+ ("— DỊCH VỤ —", None, False),
+ ("svc.title","Tiêu đề mục",False),("svc.sub","Mô tả mục",True),
+ ("svc.tiem_h","Tiêm thẩm mỹ — tên",False),("svc.tiem_p","Tiêm thẩm mỹ — mô tả",True),
+ ("svc.cang_h","Căng chỉ — tên",False),("svc.cang_p","Căng chỉ — mô tả",True),
+ ("svc.mui_h","Nâng mũi — tên",False),("svc.mui_p","Nâng mũi — mô tả",True),
+ ("svc.mi_h","Mắt/mí — tên",False),("svc.mi_p","Mắt/mí — mô tả",True),
+ ("svc.nguc_h","Nâng ngực — tên",False),("svc.nguc_p","Nâng ngực — mô tả",True),
+ ("svc.hutmo_h","Hút mỡ — tên",False),("svc.hutmo_p","Hút mỡ — mô tả",True),
+ ("svc.note","Ghi chú (bệnh viện hợp tác)",True),
+ ("svc.cap1","Ảnh dịch vụ 1 — chú thích",False),("svc.cap2","Ảnh dịch vụ 2 — chú thích",False),
+ ("svc.cap3","Ảnh dịch vụ 3 — chú thích",False),("svc.cap4","Ảnh dịch vụ 4 — chú thích",False),
+ ("— KHÔNG GIAN —", None, False),
+ ("gal.title","Tiêu đề mục",False),("gal.sub","Mô tả mục",True),
+ ("gal.cap1","Ảnh 1 — chú thích",False),("gal.cap2","Ảnh 2 — chú thích",False),
+ ("gal.cap3","Ảnh 3 — chú thích",False),("gal.cap4","Ảnh 4 — chú thích",False),
+ ("— BẢNG GIÁ —", None, False),
+ ("price.title","Tiêu đề mục",False),("price.sub","Mô tả mục",True),
+ ("price.tiem_d","Tiêm thẩm mỹ — mô tả",False),("price.cang_d","Căng chỉ — mô tả",False),
+ ("price.mui_d","Nâng mũi — mô tả",False),("price.mi_d","Mắt/mí — mô tả",False),
+ ("price.nguc_d","Nâng ngực — mô tả",False),("price.hutmo_d","Hút mỡ — mô tả",False),
+ ("price.note_a","Ghi chú cuối bảng (phần đầu)",True),
+ ("— ĐỘI NGŨ BÁC SĨ —", None, False),
+ ("doc.title","Tiêu đề mục",False),("doc.sub","Mô tả mục",True),
+ ("doc.d1_spec","BS Quang — chuyên môn",False),("doc.d1_bio","BS Quang — giới thiệu",True),
+ ("doc.d2_spec","BS Lộc — chuyên môn",False),("doc.d2_bio","BS Lộc — giới thiệu",True),
+ ("doc.d3_spec","BS Hiếu — chuyên môn",False),("doc.d3_bio","BS Hiếu — giới thiệu",True),
+ ("— TIN TỨC & KÊU GỌI —", None, False),
+ ("news.title","Tin tức — tiêu đề",False),("news.sub","Tin tức — mô tả",True),
+ ("cta.title","Dải kêu gọi — tiêu đề",False),("cta.sub","Dải kêu gọi — mô tả",True),
+ ("cta.btn","Dải kêu gọi — nút",False),
+ ("— LIÊN HỆ & CHÂN TRANG —", None, False),
+ ("contact.title","Liên hệ — tiêu đề",False),
+ ("contact.v_hours","Giờ hoạt động (cho phép <br>)",True),
+ ("foot.tagline","Chân trang — mô tả",True),
+]
+
+IMAGE_SLOTS = [
+ ("hero","Ảnh lớn trang đầu (quầy lễ tân)","img/hero-recep.jpg"),
+ ("about","Ảnh mục Giới thiệu","img/svc-tiem.jpg"),
+ ("band1","Dịch vụ — ảnh 1 (phòng phẫu thuật)","img/svc-phau2.jpg"),
+ ("band2","Dịch vụ — ảnh 2 (bác sĩ)","img/svc-phau4.jpg"),
+ ("band3","Dịch vụ — ảnh 3 (thủ thuật)","img/svc-phau1.jpg"),
+ ("band4","Dịch vụ — ảnh 4 (chăm sóc)","img/svc-tiem.jpg"),
+ ("gal1","Không gian — ảnh 1","img/gal-2.jpg"),
+ ("gal2","Không gian — ảnh 2","img/gal-1.jpg"),
+ ("gal3","Không gian — ảnh 3","img/gal-3.jpg"),
+ ("gal4","Không gian — ảnh 4","img/gal-4.jpg"),
+ ("doc_quang","Chân dung BS Quang","img/doc-quang.jpg"),
+ ("doc_loc","Chân dung BS Lộc","img/doc-loc.jpg"),
+ ("doc_hieu","Chân dung BS Hiếu","img/doc-hieu.jpg"),
+ ("logo_header","Logo đầu trang","img/brand-dark.png"),
+ ("logo_footer","Logo chân trang","img/brand-light.png"),
+]
 
 # ==== users (pbkdf2) ====
 def hashpw(pw, salt=None):
@@ -134,7 +210,7 @@ th,td{text-align:left;padding:.55em .6em;border-bottom:1px solid var(--line);ver
 
 def page(req, tab, body, msg="", err=""):
     u = me(req)
-    tabs = [("news","📰 Tin tức"),("doctors","👨‍⚕️ Bác sĩ"),("legal","📜 Pháp lý"),("settings","⚙️ Cài đặt")]
+    tabs = [("news","📰 Tin tức"),("content","🌐 Nội dung"),("images","🖼 Hình ảnh"),("doctors","👨‍⚕️ Bác sĩ"),("legal","📜 Pháp lý"),("settings","⚙️ Cài đặt")]
     if is_admin(req): tabs.append(("users","👥 Tài khoản"))
     nav = "".join(f'<a href="/admin/{k}" class="{"on" if k==tab else ""}">{t}</a>' for k,t in tabs)
     m = f'<div class="msg">{msg}</div>' if msg else ""
@@ -208,8 +284,11 @@ def news_form(p=None):
     p = p or {}
     opts = "".join(f'<option value="{k}" {"selected" if str(p.get("cat"))==k else ""}>{v}</option>' for k,v in CATS.items())
     imgs = "".join(f'<div class="c"><img src="/{u}"><br><a class="btn sm red" href="/admin/news/rmimg/{p.get("id")}?u={u}">Xoá ảnh</a></div>' for u in p.get("images", []))
+    imgs_existing = "|".join(p.get("images", []))
     return f"""<div class="card"><h2>{'Sửa bài' if p else 'Viết bài mới'}</h2>
 <form method="post" enctype="multipart/form-data">
+<input type="hidden" name="cover_existing" value="{p.get('cover','')}">
+<input type="hidden" name="images_existing" value="{imgs_existing}">
 <label>Tiêu đề *</label><input type="text" name="title" value="{p.get('title','')}" required>
 <div class="grid2">
 <div><label>Chuyên mục</label><select name="cat">{opts}</select></div>
@@ -225,7 +304,9 @@ def news_form(p=None):
 <input type="file" name="images" accept="image/*" multiple>
 <div class="creds">{imgs}</div>
 <label><input type="checkbox" name="published" {"checked" if p.get("published", True) else ""}> Hiển thị công khai</label>
-<div style="margin-top:1rem"><button class="btn">💾 Lưu bài viết</button> <a class="btn gray" href="/admin/news">Huỷ</a></div>
+<div style="margin-top:1rem"><button class="btn">💾 Lưu bài viết</button>
+<button class="btn gray" formaction="/admin/news/preview" formtarget="_blank" formnovalidate>👁 Xem trước</button>
+<a class="btn gray" href="/admin/news">Huỷ</a></div>
 </form></div>"""
 
 @app.get("/admin/news/new", response_class=HTMLResponse)
@@ -462,6 +543,157 @@ def change_pw(req: Request, pw1: str = Form(...), pw2: str = Form(...)):
     salt, h = hashpw(pw1); U[u] = {**U[u], "salt": salt, "hash": h}
     jsave(P_USERS, U)
     return RedirectResponse("/admin/settings?msg=Đã đổi mật khẩu.", 302)
+
+# ==== NỘI DUNG (chữ mọi mục, theo ngôn ngữ) ====
+@app.get("/admin/content", response_class=HTMLResponse)
+def content_page(req: Request, lang: str = "vi", msg: str = ""):
+    r = need_login(req)
+    if r: return r
+    if lang not in dict(LANGS): lang = "vi"
+    O = jload(P_TEXTS, {})
+    langopts = "".join(f'<option value="{c}" {"selected" if c==lang else ""}>{n}</option>' for c,n in LANGS)
+    rows = ""
+    for key, label, big in EDITABLE:
+        if label is None:
+            rows += f'<tr><td colspan="2" style="background:#EAF6F7;font-weight:700;color:var(--deep)">{key}</td></tr>'
+            continue
+        cur = O.get(key, {}).get(lang, "")
+        field = (f'<textarea name="t_{key}" rows="3" data-key="{key}">{cur}</textarea>' if big
+                 else f'<input type="text" name="t_{key}" value="{cur.replace(chr(34),"&quot;")}" data-key="{key}">')
+        rows += f'<tr><td style="width:34%"><b>{label}</b><div class="note df" data-def="{key}"></div></td><td>{field}</td></tr>'
+    body = f"""<div class="card"><h2>Sửa nội dung website</h2>
+<p class="note">Bỏ trống = dùng nội dung mặc định (hiện màu xám bên dưới nhãn). Nhập chữ = thay thế trên website. Mỗi ngôn ngữ sửa riêng.</p>
+<form method="get" action="/admin/content" style="margin:.6rem 0">
+<label>Ngôn ngữ đang sửa</label><select name="lang" onchange="this.form.submit()">{langopts}</select></form>
+<form method="post" action="/admin/content?lang={lang}">
+<table>{rows}</table>
+<div style="margin-top:1rem"><button class="btn">💾 Lưu nội dung ({dict(LANGS)[lang]})</button></div>
+</form></div>
+<script>
+fetch('/index.html').then(function(r){{return r.text();}}).then(function(s){{
+  var m=s.match(/var T=\\{{[\\s\\S]*?\\}};/); if(!m)return;
+  var T=new Function('return '+m[0].slice(6,-1))();
+  document.querySelectorAll('.df').forEach(function(el){{
+    var k=el.dataset.def; var d=(T[k]&&T[k]['{lang}'])||'';
+    el.textContent='Mặc định: '+d.replace(/<[^>]+>/g,' ');
+    var inp=document.querySelector('[data-key="'+CSS.escape(k)+'"]');
+    if(inp&&!inp.value)inp.placeholder=d.replace(/<br>/g,' ');
+  }});
+}}).catch(function(){{}});
+</script>"""
+    return page(req, "content", body, msg=msg)
+
+@app.post("/admin/content")
+async def content_save(req: Request, lang: str = "vi"):
+    r = need_login(req)
+    if r: return r
+    if lang not in dict(LANGS): lang = "vi"
+    form = await req.form()
+    O = jload(P_TEXTS, {})
+    for key, label, _ in EDITABLE:
+        if label is None: continue
+        v = str(form.get(f"t_{key}", "")).strip()
+        if v:
+            O.setdefault(key, {})[lang] = v
+        elif key in O and lang in O[key]:
+            del O[key][lang]
+            if not O[key]: del O[key]
+    jsave(P_TEXTS, O)
+    return RedirectResponse(f"/admin/content?lang={lang}&msg=Đã lưu nội dung.", 302)
+
+# ==== HÌNH ẢNH (mọi vị trí trên web) ====
+@app.get("/admin/images", response_class=HTMLResponse)
+def images_page(req: Request, msg: str = ""):
+    r = need_login(req)
+    if r: return r
+    S = jload(P_SITE, {})
+    imgs = S.get("images", {})
+    rows = ""
+    for slot, label, default in IMAGE_SLOTS:
+        cur = imgs.get(slot, "")
+        src = "/" + (cur or default)
+        state = '<span class="badge">Đã thay</span> <a class="btn sm gray" href="/admin/images/reset/' + slot + '">Về mặc định</a>' if cur else '<span class="note">Mặc định</span>'
+        rows += f"""<tr><td style="width:30%"><b>{label}</b><br>{state}</td>
+<td><img class="thumb" style="height:70px" src="{src}"></td>
+<td><form method="post" action="/admin/images/{slot}" enctype="multipart/form-data">
+<input type="file" name="file" accept="image/*" required>
+<button class="btn sm" style="margin-top:.4rem">⬆ Thay ảnh</button></form></td></tr>"""
+    body = f"""<div class="card"><h2>Hình ảnh trên website</h2>
+<p class="note">Ảnh thay sẽ tự nén về ≤1600px. "Về mặc định" = quay lại ảnh gốc trong bộ code.</p>
+<table>{rows}</table></div>"""
+    return page(req, "images", body, msg=msg)
+
+@app.post("/admin/images/{slot}")
+async def images_upload(req: Request, slot: str):
+    r = need_login(req)
+    if r: return r
+    if slot not in {s for s,_,_ in IMAGE_SLOTS}: return RedirectResponse("/admin/images", 302)
+    form = await req.form()
+    f = form.get("file")
+    if f and getattr(f, "filename", ""):
+        S = jload(P_SITE, {})
+        S.setdefault("images", {})[slot] = save_upload(f)
+        jsave(P_SITE, S)
+    return RedirectResponse("/admin/images?msg=Đã thay ảnh.", 302)
+
+@app.get("/admin/images/reset/{slot}")
+def images_reset(req: Request, slot: str):
+    r = need_login(req)
+    if r: return r
+    S = jload(P_SITE, {})
+    S.get("images", {}).pop(slot, None)
+    jsave(P_SITE, S)
+    return RedirectResponse("/admin/images?msg=Đã trả về mặc định.", 302)
+
+# ==== XEM TRƯỚC BÀI VIẾT (không lưu) ====
+@app.post("/admin/news/preview", response_class=HTMLResponse)
+async def news_preview(req: Request):
+    r = need_login(req)
+    if r: return r
+    form = await req.form()
+    import base64
+    title = str(form.get("title","(Chưa có tiêu đề)")).strip() or "(Chưa có tiêu đề)"
+    cat = CATS.get(str(form.get("cat","1")), "")
+    d = str(form.get("date","")) or date.today().isoformat()
+    bodytxt = str(form.get("body",""))
+    cover_src = ""
+    c = form.get("cover")
+    if c and getattr(c, "filename", ""):
+        raw = c.file.read()
+        if raw:
+            ext = (os.path.splitext(c.filename)[1] or ".jpg").lower().strip(".")
+            cover_src = f"data:image/{'png' if ext=='png' else 'jpeg'};base64," + base64.b64encode(raw).decode()
+    if not cover_src:
+        ce = str(form.get("cover_existing",""))
+        if ce: cover_src = "/" + ce
+    imgs_existing = [u for u in str(form.get("images_existing","")).split("|") if u]
+    def esc(s):
+        return (s.replace("&","&amp;").replace("<","&lt;").replace(">","&gt;"))
+    paras = []
+    for t in re.split(r"\n\s*\n", bodytxt):
+        t = t.strip()
+        if not t: continue
+        m = re.match(r"^!\[\]\((.+)\)$", t)
+        if m: paras.append(f'<img src="{esc(m.group(1))}" alt="">')
+        else: paras.append("<p>" + esc(t).replace("\n","<br>") + "</p>")
+    body_html = "".join(paras) + "".join(f'<img src="/{esc(u)}" alt="">' for u in imgs_existing)
+    cover_html = f'<div class="cover"><img src="{cover_src}"></div>' if cover_src else ""
+    return HTMLResponse(f"""<!DOCTYPE html><html lang="vi"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>Xem trước — {esc(title)}</title>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700&family=Cormorant+Garamond:wght@600&display=swap" rel="stylesheet">
+<style>body{{font-family:'Be Vietnam Pro',sans-serif;background:#FBFAF6;color:#0C3138;line-height:1.7;margin:0}}
+.bar{{background:#024A56;color:#fff;padding:.7rem 1rem;font-size:.85rem;position:sticky;top:0}}
+.bar b{{color:#7fe3ec}}
+.article{{max-width:760px;margin:2rem auto;padding:0 1rem 3rem}}
+.cat{{font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#017E8C}}
+h1{{font-family:'Cormorant Garamond',serif;font-size:2.4rem;line-height:1.15;margin:.4rem 0}}
+.meta{{color:#48626B;font-size:.85rem;margin-bottom:1.4rem}}
+.cover{{border-radius:14px;overflow:hidden;margin-bottom:1.6rem}}
+.cover img,img{{max-width:100%;display:block;border-radius:12px}}
+p{{margin-bottom:1.1rem;color:#233c43}}img{{margin:1.2rem 0}}</style></head><body>
+<div class="bar">👁 <b>BẢN XEM TRƯỚC</b> — bài chưa được lưu. Đóng tab này rồi bấm "💾 Lưu bài viết" nếu ưng ý.</div>
+<div class="article"><span class="cat">{esc(cat)}</span><h1>{esc(title)}</h1>
+<div class="meta">{esc(d)}</div>{cover_html}{body_html or '<p class="meta">(Chưa có nội dung)</p>'}</div></body></html>""")
 
 # ==== TÀI KHOẢN (admin) ====
 @app.get("/admin/users", response_class=HTMLResponse)

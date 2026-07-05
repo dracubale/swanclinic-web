@@ -34,3 +34,19 @@ Trang quản trị tại **https://swanclinic.vn/admin** để nhân viên tự 
 - CMS chạy service `swan-cms` (port nội bộ 8300). Lệnh: `systemctl status swan-cms`,
   log: `journalctl -u swan-cms -n 50`.
 - Ảnh upload tự resize ≤1600px để web nhẹ. Giới hạn 10MB/file.
+
+## Tính năng mới (bản cập nhật)
+- **👁 Xem trước bài viết**: trong form viết/sửa bài, bấm "Xem trước" → mở tab mới
+  hiển thị bài đúng giao diện website, CHƯA lưu gì. Ưng ý thì quay lại bấm "Lưu bài viết".
+- **🌐 Nội dung**: sửa chữ ở MỌI mục trên website (hero, giới thiệu, dịch vụ, bảng giá,
+  bác sĩ, liên hệ...). Chọn ngôn ngữ ở trên rồi sửa; bỏ trống = dùng bản mặc định.
+  Dòng xám "Mặc định: ..." cho biết nội dung gốc.
+- **🖼 Hình ảnh**: thay ảnh ở mọi vị trí (hero, giới thiệu, 4 ảnh dịch vụ, 4 ảnh không gian,
+  3 chân dung bác sĩ, logo). Có nút "Về mặc định" để hoàn tác.
+
+## Nâng cấp CMS đang chạy (khi có bản app.py mới)
+```
+cd /opt/swanclinic-src && git pull
+cp /opt/swanclinic-src/cms/app.py /opt/swan-cms/app.py 2>/dev/null || cp $(find /opt/swanclinic-src -path '*/cms/app.py' | head -1) /opt/swan-cms/app.py
+systemctl restart swan-cms
+```
