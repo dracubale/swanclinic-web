@@ -1,0 +1,12 @@
+# Dán vào PuTTY để cập nhật lệnh deploy-swan (thêm news.html):
+cat > /usr/local/bin/deploy-swan <<'EOS'
+#!/bin/bash
+cd /opt/swanclinic-src && git pull
+SRC=$(dirname "$(find /opt/swanclinic-src -name index.html -not -path '*/.git/*' | head -1)")
+echo "Nguon file: $SRC"
+cp -rf "$SRC"/index.html "$SRC"/news.html "$SRC"/img "$SRC"/favicon.ico /var/www/swanclinic/ 2>/dev/null
+chown -R www-data:www-data /var/www/swanclinic
+systemctl reload nginx
+echo "Da cap nhat xong."
+EOS
+chmod +x /usr/local/bin/deploy-swan

@@ -1,0 +1,14 @@
+[Unit]
+Description=Swan Clinic CMS
+After=network.target
+
+[Service]
+WorkingDirectory=/opt/swan-cms
+Environment=SWAN_CONTENT=/var/www/swanclinic/content
+Environment=SWAN_CMS_DATA=/opt/swan-cms/data
+ExecStart=/opt/swan-cms/venv/bin/uvicorn app:app --host 127.0.0.1 --port 8300
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target
