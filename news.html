@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#00ADBE">
+<title>Tin tức — Swan Clinic</title>
+<meta name="description" content="Tin tức Swan Clinic — hoạt động phòng khám, kiến thức làm đẹp và cập nhật chính sách y tế.">
+<link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16.png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:only light;
+  --brand:#00ADBE;--brand-deep:#017E8C;--brand-ink:#024A56;--brand-tint:#D9F1F4;
+  --ink:#0C3138;--ink-soft:#48626B;--ivory:#FBFAF6;--mist:#EAF6F7;--mist-2:#F3FAFB;
+  --line:#E6E2D7;--line-cool:#CDE8EB;
+  --shadow:0 18px 50px -28px rgba(6,56,64,.45);--shadow-sm:0 8px 24px -16px rgba(6,56,64,.4)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;background:#FBFAF6}
+body{font-family:"Be Vietnam Pro",system-ui,sans-serif;color:var(--ink);background:var(--ivory);line-height:1.7;-webkit-font-smoothing:antialiased}
+.wrap{width:min(1080px,92vw);margin-inline:auto}
+h1,h2,h3{font-family:"Cormorant Garamond",serif;font-weight:600;line-height:1.15;color:var(--ink)}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+header{position:sticky;top:0;z-index:80;background:rgba(251,250,246,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.6rem 0}
+.brand img{height:52px}
+.btn{display:inline-flex;align-items:center;gap:.5em;font-weight:600;font-size:.92rem;padding:.7em 1.4em;border-radius:999px;cursor:pointer;border:1.5px solid transparent;transition:.25s;white-space:nowrap}
+.btn-primary{background:var(--brand);color:#fff}.btn-primary:hover{background:var(--brand-deep)}
+.btn-ghost{border-color:var(--brand);color:var(--brand-deep)}.btn-ghost:hover{background:var(--brand);color:#fff}
+.page-head{background:linear-gradient(160deg,var(--brand-ink),#016273);color:#fff;padding:3.2rem 0 2.6rem}
+.page-head h1{color:#fff;font-size:clamp(2.2rem,5vw,3.2rem)}
+.page-head p{color:#bfe9ee;margin-top:.5rem;max-width:56ch}
+.filters{display:flex;gap:.6rem;flex-wrap:wrap;padding:1.4rem 0 0}
+.chip{border:1.5px solid var(--line-cool);background:#fff;color:var(--ink-soft);border-radius:999px;padding:.45em 1.1em;font-size:.85rem;font-weight:600;cursor:pointer;transition:.2s}
+.chip.on,.chip:hover{background:var(--brand);border-color:var(--brand);color:#fff}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;padding:1.6rem 0 3.5rem}
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;transition:.28s}
+.card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.card .ci{aspect-ratio:16/9;background:var(--mist);overflow:hidden}
+.card .ci img{width:100%;height:100%;object-fit:cover}
+.card .cb{padding:1.1rem 1.2rem 1.3rem;display:flex;flex-direction:column;gap:.45rem;flex:1}
+.cat{font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--brand-deep)}
+.ct{font-family:"Cormorant Garamond";font-size:1.4rem;font-weight:600;line-height:1.25}
+.cd{font-size:.78rem;color:var(--ink-soft);margin-top:auto}
+.empty{padding:3rem 0 4rem;color:var(--ink-soft);font-style:italic}
+/* article */
+.article{max-width:760px;margin-inline:auto;padding:2.6rem 0 4rem}
+.article .cat{margin-bottom:.5rem;display:block}
+.article h1{font-size:clamp(1.9rem,4.5vw,2.9rem)}
+.article .meta{color:var(--ink-soft);font-size:.85rem;margin:.7rem 0 1.6rem}
+.article .cover{border-radius:14px;overflow:hidden;margin-bottom:1.8rem;box-shadow:var(--shadow-sm)}
+.article .body p{margin-bottom:1.1rem;color:#233c43;font-size:1.03rem}
+.article .body img{border-radius:12px;margin:1.4rem 0}
+.backlink{display:inline-flex;align-items:center;gap:.4em;color:var(--brand-deep);font-weight:600;font-size:.9rem;margin-bottom:1.4rem}
+.backlink:hover{text-decoration:underline}
+footer{background:var(--brand-ink);color:#bfe3e7;padding:1.6rem 0;font-size:.82rem}
+footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+@media(max-width:900px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="index.html"><img src="img/brand-dark.png" alt="Swan Clinic"></a>
+    <div style="display:flex;gap:.7rem;align-items:center">
+      <a class="btn btn-ghost" href="index.html">← Trang chủ</a>
+      <a class="btn btn-primary" id="bookBtn" href="https://m.me/swanclinicvn" target="_blank" rel="noopener">Đặt hẹn</a>
+    </div>
+  </div>
+</header>
+
+<div id="listView">
+  <div class="page-head"><div class="wrap">
+    <h1>Tin tức &amp; kiến thức</h1>
+    <p>Hoạt động của Swan Clinic, kiến thức làm đẹp và cập nhật chính sách y tế.</p>
+  </div></div>
+  <div class="wrap">
+    <div class="filters" id="filters">
+      <button class="chip on" data-cat="">Tất cả</button>
+      <button class="chip" data-cat="1">Tin tức Swan Clinic</button>
+      <button class="chip" data-cat="2">Giáo dục sức khỏe &amp; Làm đẹp</button>
+      <button class="chip" data-cat="3">Chính sách, pháp luật y tế</button>
+    </div>
+    <div class="grid" id="grid"></div>
+    <p class="empty" id="empty" style="display:none">Chưa có bài viết trong mục này.</p>
+  </div>
+</div>
+
+<div id="postView" style="display:none"><div class="wrap"><div class="article">
+  <a class="backlink" href="news.html">← Tất cả tin tức</a>
+  <span class="cat" id="pCat"></span>
+  <h1 id="pTitle"></h1>
+  <div class="meta" id="pMeta"></div>
+  <div class="cover" id="pCover" style="display:none"><img id="pCoverImg" alt=""></div>
+  <div class="body" id="pBody"></div>
+</div></div></div>
+
+<footer><div class="wrap">
+  <span><b style="color:#fff">CÔNG TY TNHH SWAN CLINIC</b> · GPKD số 0319071661 do Sở Tài chính TP.HCM cấp · GPHĐ KCB số 09839/HCM-GPHĐ do Sở Y tế TP.HCM cấp</span>
+  <span>© 2026 Swan Clinic</span>
+</div></footer>
+
+<script>
+var CATNAMES={"1":"Tin tức Swan Clinic","2":"Giáo dục sức khỏe & Làm đẹp","3":"Chính sách, pháp luật y tế"};
+function esc(s){var d=document.createElement('div');d.textContent=s==null?'':String(s);return d.innerHTML;}
+function qs(k){return new URLSearchParams(location.search).get(k);}
+var POSTS=[];
+fetch('content/site.json',{cache:'no-store'}).then(function(r){return r.ok?r.json():null;}).then(function(S){
+  if(S&&S.messenger)document.getElementById('bookBtn').href=S.messenger;
+}).catch(function(){});
+fetch('content/news.json',{cache:'no-store'}).then(function(r){return r.ok?r.json():{posts:[]};}).then(function(N){
+  POSTS=(N.posts||[]).filter(function(p){return p.published!==false;});
+  POSTS.sort(function(a,b){return (b.date||'').localeCompare(a.date||'');});
+  var id=qs('id');
+  if(id){renderPost(id);}else{renderList('');}
+}).catch(function(){renderList('');});
+
+function renderList(cat){
+  var grid=document.getElementById('grid'),empty=document.getElementById('empty');
+  var list=cat?POSTS.filter(function(p){return String(p.cat)===cat;}):POSTS;
+  grid.innerHTML=list.map(function(p){
+    return '<a class="card" href="news.html?id='+encodeURIComponent(p.id)+'">'+
+      '<div class="ci">'+(p.cover?'<img src="'+esc(p.cover)+'" alt="" loading="lazy">':'')+'</div>'+
+      '<div class="cb"><span class="cat">'+esc(CATNAMES[p.cat]||CATNAMES["1"])+'</span>'+
+      '<span class="ct">'+esc(p.title)+'</span><span class="cd">'+esc(p.date||'')+'</span></div></a>';
+  }).join('');
+  empty.style.display=list.length?'none':'';
+}
+document.getElementById('filters').addEventListener('click',function(e){
+  var b=e.target.closest('.chip');if(!b)return;
+  document.querySelectorAll('.chip').forEach(function(c){c.classList.remove('on');});
+  b.classList.add('on');renderList(b.dataset.cat);
+});
+function renderPost(id){
+  var p=POSTS.find(function(x){return String(x.id)===String(id);});
+  if(!p){location.href='news.html';return;}
+  document.getElementById('listView').style.display='none';
+  document.getElementById('postView').style.display='';
+  document.title=p.title+' — Swan Clinic';
+  document.getElementById('pCat').textContent=CATNAMES[p.cat]||'';
+  document.getElementById('pTitle').textContent=p.title;
+  document.getElementById('pMeta').textContent=(p.date||'')+(p.author?' · '+p.author:'');
+  if(p.cover){document.getElementById('pCover').style.display='';document.getElementById('pCoverImg').src=p.cover;}
+  var body=document.getElementById('pBody');
+  var paras=String(p.body||'').split(/\n\s*\n/);
+  body.innerHTML=paras.map(function(t){
+    t=t.trim();if(!t)return'';
+    var m=t.match(/^!\[\]\((.+)\)$/);           // ![](url) = ảnh chèn giữa bài
+    if(m)return '<img src="'+esc(m[1])+'" alt="" loading="lazy">';
+    return '<p>'+esc(t).replace(/\n/g,'<br>')+'</p>';
+  }).join('');
+  (p.images||[]).forEach(function(u){body.innerHTML+='<img src="'+esc(u)+'" alt="" loading="lazy">';});
+}
+</script>
+</body>
+</html>

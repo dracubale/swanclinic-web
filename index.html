@@ -288,6 +288,42 @@ footer{background:var(--brand-ink);color:#bfe3e7}
 }
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto}.reveal{opacity:1;transform:none}}
 @media (prefers-color-scheme: dark){html,body{background:#FBFAF6 !important;color:var(--ink) !important}}
+/* legal & documents */
+.legal-box{margin-top:1.6rem;padding:1.2rem 1.3rem;background:var(--mist);border:1px solid var(--line-cool);border-radius:14px}
+.legal-box h4{font-family:"Be Vietnam Pro";font-size:.8rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--brand-deep);margin-bottom:.7rem}
+.legal-docs{display:flex;gap:.8rem;flex-wrap:wrap;align-items:center}
+.legal-docs img{height:86px;border-radius:8px;border:1px solid var(--line-cool);cursor:pointer;transition:.25s}
+.legal-docs img:hover{transform:scale(1.03);box-shadow:var(--shadow-sm)}
+.btn-doc{display:inline-flex;align-items:center;gap:.45em;font-size:.85rem;font-weight:600;color:var(--brand-deep);
+  border:1.5px solid var(--brand);border-radius:999px;padding:.5em 1.1em;cursor:pointer;background:#fff;transition:.2s}
+.btn-doc:hover{background:var(--brand);color:#fff}
+/* doctor creds */
+.doc-creds{margin-top:.8rem}
+.doc-creds .btn-doc{font-size:.8rem;padding:.45em 1em}
+/* lightbox */
+.lb{position:fixed;inset:0;background:rgba(2,40,48,.86);z-index:200;display:none;align-items:center;justify-content:center;padding:4vmin}
+.lb.open{display:flex}
+.lb img{max-width:92vw;max-height:88vh;border-radius:10px;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+.lb .lb-close{position:absolute;top:18px;right:22px;background:none;border:0;color:#fff;font-size:2rem;cursor:pointer;line-height:1}
+.lb .lb-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.14);border:0;color:#fff;
+  font-size:1.6rem;width:46px;height:46px;border-radius:50%;cursor:pointer}
+.lb .lb-prev{left:16px}.lb .lb-next{right:16px}
+/* news */
+.news{background:var(--mist-2);border-block:1px solid var(--line-cool)}
+.news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-top:2.4rem}
+.news-card{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;transition:.28s}
+.news-card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.news-card .nc-img{aspect-ratio:16/9;background:var(--mist);overflow:hidden}
+.news-card .nc-img img{width:100%;height:100%;object-fit:cover;transition:.5s}
+.news-card:hover .nc-img img{transform:scale(1.04)}
+.news-card .nc-body{padding:1.1rem 1.2rem 1.3rem;display:flex;flex-direction:column;gap:.45rem;flex:1}
+.nc-cat{font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--brand-deep)}
+.nc-title{font-family:"Cormorant Garamond";font-size:1.35rem;font-weight:600;color:var(--ink);line-height:1.25}
+body.lang-th .nc-title,body.lang-ko .nc-title,body.lang-zh .nc-title,body.lang-km .nc-title{font-family:inherit}
+.nc-date{font-size:.78rem;color:var(--ink-soft);margin-top:auto}
+.news-more{margin-top:2rem;text-align:center}
+.news-empty{margin-top:2rem;color:var(--ink-soft);font-style:italic}
+@media(max-width:920px){.news-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body class="lang-vi">
@@ -301,10 +337,11 @@ footer{background:var(--brand-ink);color:#bfe3e7}
       <a href="#gallery" data-i18n="nav.gallery">Không gian</a>
       <a href="#pricing" data-i18n="nav.pricing">Bảng giá</a>
       <a href="#doctors" data-i18n="nav.doctors">Đội ngũ bác sĩ</a>
+      <a href="news.html" data-i18n="nav.news">Tin tức</a>
       <a href="#contact" data-i18n="nav.contact">Liên hệ</a>
     </nav>
     <div class="nav-cta">
-      <span class="hot">☎ 0934 37 31 37</span>
+      <span class="hot">☎ <span data-site="hotline">0934 37 31 37</span></span>
       <div class="lang">
         <button class="lang-btn" id="langBtn" aria-haspopup="true" aria-expanded="false">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 2.5 15 0 18M12 3c-2.5 2.5-2.5 15 0 18"/></svg>
@@ -358,6 +395,10 @@ footer{background:var(--brand-ink);color:#bfe3e7}
         <li><span class="dot">✦</span><div><b data-i18n="about.p2b">Phác đồ cá nhân hóa</b> <span data-i18n="about.p2s">— thiết kế riêng theo tình trạng và mong muốn của bạn.</span></div></li>
         <li><span class="dot">✦</span><div><b data-i18n="about.p3b">Minh bạch &amp; an toàn</b> <span data-i18n="about.p3s">— quy trình chuẩn y khoa, thông tin pháp lý rõ ràng.</span></div></li>
       </ul>
+      <div class="legal-box" id="legalBox" style="display:none">
+        <h4 data-i18n="about.legal">Pháp lý &amp; giấy phép</h4>
+        <div class="legal-docs" id="legalDocs"></div>
+      </div>
     </div>
   </div>
 </section>
@@ -424,14 +465,14 @@ footer{background:var(--brand-ink);color:#bfe3e7}
     </div>
     <div class="price-table reveal">
       <div class="price-row head"><div data-i18n="price.th_s">Dịch vụ</div><div data-i18n="price.th_d">Mô tả</div><div style="text-align:right" data-i18n="price.th_c">Chi phí từ</div></div>
-      <div class="price-row"><div class="name" data-i18n="svc.tiem_h">Tiêm thẩm mỹ</div><div class="desc" data-i18n="price.tiem_d">Filler, Botox, mesotherapy</div><div class="cost">5.000.000đ</div></div>
-      <div class="price-row"><div class="name" data-i18n="svc.cang_h">Căng chỉ</div><div class="desc" data-i18n="price.cang_d">Nâng cơ, trẻ hóa bằng chỉ</div><div class="cost">10.000.000đ</div></div>
-      <div class="price-row"><div class="name" data-i18n="svc.mui_h">Nâng mũi</div><div class="desc" data-i18n="price.mui_d">Tạo dáng mũi</div><div class="cost">25.000.000đ</div></div>
-      <div class="price-row"><div class="name" data-i18n="svc.mi_h">Thẩm mỹ mắt / mí</div><div class="desc" data-i18n="price.mi_d">Cắt mí, nhấn mí</div><div class="cost">15.000.000đ</div></div>
-      <div class="price-row"><div class="name" data-i18n="svc.nguc_h">Nâng ngực</div><div class="desc" data-i18n="price.nguc_d">Phẫu thuật tạo hình ngực</div><div class="cost">50.000.000đ</div></div>
-      <div class="price-row"><div class="name" data-i18n="svc.hutmo_h">Hút mỡ</div><div class="desc" data-i18n="price.hutmo_d">Thon gọn vóc dáng</div><div class="cost">15.000.000đ</div></div>
+      <div class="price-row"><div class="name" data-i18n="svc.tiem_h">Tiêm thẩm mỹ</div><div class="desc" data-i18n="price.tiem_d">Filler, Botox, mesotherapy</div><div class="cost" data-price="tiem">5.000.000đ</div></div>
+      <div class="price-row"><div class="name" data-i18n="svc.cang_h">Căng chỉ</div><div class="desc" data-i18n="price.cang_d">Nâng cơ, trẻ hóa bằng chỉ</div><div class="cost" data-price="cang">10.000.000đ</div></div>
+      <div class="price-row"><div class="name" data-i18n="svc.mui_h">Nâng mũi</div><div class="desc" data-i18n="price.mui_d">Tạo dáng mũi</div><div class="cost" data-price="mui">25.000.000đ</div></div>
+      <div class="price-row"><div class="name" data-i18n="svc.mi_h">Thẩm mỹ mắt / mí</div><div class="desc" data-i18n="price.mi_d">Cắt mí, nhấn mí</div><div class="cost" data-price="mi">15.000.000đ</div></div>
+      <div class="price-row"><div class="name" data-i18n="svc.nguc_h">Nâng ngực</div><div class="desc" data-i18n="price.nguc_d">Phẫu thuật tạo hình ngực</div><div class="cost" data-price="nguc">50.000.000đ</div></div>
+      <div class="price-row"><div class="name" data-i18n="svc.hutmo_h">Hút mỡ</div><div class="desc" data-i18n="price.hutmo_d">Thon gọn vóc dáng</div><div class="cost" data-price="hutmo">15.000.000đ</div></div>
     </div>
-    <p class="price-note reveal"><span data-i18n="price.note_a">* Bảng giá mang tính tham khảo. Chi phí thực tế phụ thuộc tình trạng và phác đồ riêng của mỗi khách hàng — vui lòng liên hệ </span><a href="tel:+84934373137">0934 37 31 37</a><span data-i18n="price.note_b"> để được tư vấn.</span></p>
+    <p class="price-note reveal"><span data-i18n="price.note_a">* Bảng giá mang tính tham khảo. Chi phí thực tế phụ thuộc tình trạng và phác đồ riêng của mỗi khách hàng — vui lòng liên hệ </span><a href="tel:+84934373137" data-site="hotline" data-site-tel="1">0934 37 31 37</a><span data-i18n="price.note_b"> để được tư vấn.</span></p>
   </div>
 </section>
 
@@ -446,19 +487,43 @@ footer{background:var(--brand-ink);color:#bfe3e7}
     <div class="docs-grid">
       <article class="doc-card reveal">
         <div class="doc-photo"><img src="img/doc-quang.jpg" alt="ThS.BSCKI Nguyễn Bá Quang"><div class="role"><div class="deg">ThS.BSCKI</div><h3>Nguyễn Bá Quang</h3></div></div>
-        <div class="doc-body"><div class="spec" data-i18n="doc.d1_spec">Phẫu thuật tạo hình</div><p data-i18n="doc.d1_bio">Phụ trách chuyên môn phòng khám, với hơn 20 năm trong ngành Y và hơn 10 năm chuyên sâu Phẫu thuật tạo hình thẩm mỹ. Được đào tạo bài bản với văn bằng Thạc sĩ Ngoại khoa và Bác sĩ CKI Phẫu thuật tạo hình, thường xuyên cập nhật xu hướng y học tái tạo qua các hội nghị khoa học quốc tế.</p></div>
+        <div class="doc-body"><div class="spec" data-i18n="doc.d1_spec">Phẫu thuật tạo hình</div><p data-i18n="doc.d1_bio">Phụ trách chuyên môn phòng khám, với hơn 20 năm trong ngành Y và hơn 10 năm chuyên sâu Phẫu thuật tạo hình thẩm mỹ. Được đào tạo bài bản với văn bằng Thạc sĩ Ngoại khoa và Bác sĩ CKI Phẫu thuật tạo hình, thường xuyên cập nhật xu hướng y học tái tạo qua các hội nghị khoa học quốc tế.</p>
+          <div class="doc-creds" data-doc="quang"></div></div>
       </article>
       <article class="doc-card reveal">
         <div class="doc-photo"><img src="img/doc-loc.jpg" alt="BSCKI Trần Đức Lộc"><div class="role"><div class="deg">BSCKI</div><h3>Trần Đức Lộc</h3></div></div>
-        <div class="doc-body"><div class="spec" data-i18n="doc.d2_spec">Tạo hình, tái tạo &amp; thẩm mỹ</div><p data-i18n="doc.d2_bio">Hơn 10 năm kinh nghiệm chuyên sâu trong lĩnh vực tạo hình và thẩm mỹ. Được đào tạo bài bản với bằng Chuyên khoa I về Ngoại khoa và Tạo hình thẩm mỹ, cùng nhiều chứng chỉ thực hành kỹ thuật thẩm mỹ nội khoa như tiêm filler, botox.</p></div>
+        <div class="doc-body"><div class="spec" data-i18n="doc.d2_spec">Tạo hình, tái tạo &amp; thẩm mỹ</div><p data-i18n="doc.d2_bio">Hơn 10 năm kinh nghiệm chuyên sâu trong lĩnh vực tạo hình và thẩm mỹ. Được đào tạo bài bản với bằng Chuyên khoa I về Ngoại khoa và Tạo hình thẩm mỹ, cùng nhiều chứng chỉ thực hành kỹ thuật thẩm mỹ nội khoa như tiêm filler, botox.</p>
+          <div class="doc-creds" data-doc="loc"></div></div>
       </article>
       <article class="doc-card reveal">
         <div class="doc-photo"><img src="img/doc-hieu.jpg" alt="BSCKI Nguyễn Trung Hiếu"><div class="role"><div class="deg">BSCKI</div><h3>Nguyễn Trung Hiếu</h3></div></div>
-        <div class="doc-body"><div class="spec" data-i18n="doc.d3_spec">Trưởng phòng Kế hoạch Tổng hợp</div><p data-i18n="doc.d3_bio">Hơn 5 năm kinh nghiệm trong quản lý y tế, nội khoa và da liễu thẩm mỹ. Với nền tảng chuyên môn vững chắc, bác sĩ hướng đến các giải pháp điều trị khoa học, an toàn và phù hợp với từng khách hàng — cải thiện cả vẻ ngoài lẫn sự tự tin.</p></div>
+        <div class="doc-body"><div class="spec" data-i18n="doc.d3_spec">Trưởng phòng Kế hoạch Tổng hợp</div><p data-i18n="doc.d3_bio">Hơn 5 năm kinh nghiệm trong quản lý y tế, nội khoa và da liễu thẩm mỹ. Với nền tảng chuyên môn vững chắc, bác sĩ hướng đến các giải pháp điều trị khoa học, an toàn và phù hợp với từng khách hàng — cải thiện cả vẻ ngoài lẫn sự tự tin.</p>
+          <div class="doc-creds" data-doc="hieu"></div></div>
       </article>
     </div>
   </div>
 </section>
+
+<section class="news" id="news">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow vi" data-i18n="news.eyebrow">Tin tức</p>
+      <h2 class="serif" data-i18n="news.title">Tin tức &amp; kiến thức</h2>
+      <span class="h2-rule"></span>
+      <p data-i18n="news.sub">Hoạt động của Swan Clinic, kiến thức làm đẹp và cập nhật chính sách y tế.</p>
+    </div>
+    <div class="news-grid" id="newsGrid"></div>
+    <p class="news-empty" id="newsEmpty" style="display:none" data-i18n="news.empty">Chưa có bài viết. Nội dung sẽ được cập nhật sớm.</p>
+    <div class="news-more"><a class="btn btn-ghost" href="news.html" data-i18n="news.all">Xem tất cả tin tức</a></div>
+  </div>
+</section>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true">
+  <button class="lb-close" aria-label="Đóng">&times;</button>
+  <button class="lb-nav lb-prev" aria-label="Trước">&#8249;</button>
+  <img alt="">
+  <button class="lb-nav lb-next" aria-label="Sau">&#8250;</button>
+</div>
 
 <section class="cta-band">
   <svg class="swan-bg" viewBox="0 0 100 100" aria-hidden="true"><path fill="currentColor" d="M50 12c-9 0-15 7-15 15 0 6 4 10 4 14-6 2-18 8-25 22 11-4 18-3 18-3-7 5-9 13-9 13 9-8 20-9 28-9 14 0 24-9 24-22 0-11-7-16-11-19 3-1 6-3 6-7 0-6-6-9-13-9z"/></svg>
@@ -481,8 +546,8 @@ footer{background:var(--brand-ink);color:#bfe3e7}
     <div class="contact-grid">
       <div class="contact-info reveal">
         <div class="ci"><span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 21s-7-6.5-7-11a7 7 0 0114 0c0 4.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span><div><b data-i18n="contact.l_addr">Địa chỉ</b><span>219Bis Nguyễn Thị Minh Khai, Phường Cầu Ông Lãnh, TP. Hồ Chí Minh</span></div></div>
-        <div class="ci"><span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M5 4h4l2 5-3 2a12 12 0 005 5l2-3 5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></svg></span><div><b data-i18n="contact.l_hotline">Hotline</b><a href="tel:+84934373137">0934 37 31 37</a></div></div>
-        <div class="ci"><span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 6h18v12H3z"/><path d="M3 7l9 6 9-6"/></svg></span><div><b data-i18n="contact.l_email">Email</b><a href="mailto:swanclinic.khth@gmail.com">swanclinic.khth@gmail.com</a></div></div>
+        <div class="ci"><span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M5 4h4l2 5-3 2a12 12 0 005 5l2-3 5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></svg></span><div><b data-i18n="contact.l_hotline">Hotline</b><a href="tel:+84934373137" data-site="hotline" data-site-tel="1">0934 37 31 37</a></div></div>
+        <div class="ci"><span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 6h18v12H3z"/><path d="M3 7l9 6 9-6"/></svg></span><div><b data-i18n="contact.l_email">Email</b><a href="mailto:swanclinic.khth@gmail.com" data-site="email" data-site-mail="1">swanclinic.khth@gmail.com</a></div></div>
         <div class="ci"><span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div><b data-i18n="contact.l_hours">Giờ hoạt động</b><span data-i18n="contact.v_hours">8:00 – 21:00 (Thứ 2 – Thứ 7)<br>8:00 – 18:00 (Chủ nhật)</span></div></div>
         <div class="ci"><span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 5h16v14H4z"/><path d="M4 9h16"/></svg></span><div><b data-i18n="contact.l_connect">Kết nối với chúng tôi</b>
           <div class="socials">
@@ -509,12 +574,12 @@ footer{background:var(--brand-ink);color:#bfe3e7}
     </ul></div>
     <div><h5 data-i18n="foot.h_contact">Liên hệ</h5><ul>
       <li>219Bis Nguyễn Thị Minh Khai,<br>P. Cầu Ông Lãnh, TP. HCM</li>
-      <li><a href="tel:+84934373137">0934 37 31 37</a></li>
-      <li><a href="mailto:swanclinic.khth@gmail.com">swanclinic.khth@gmail.com</a></li>
+      <li><a href="tel:+84934373137" data-site="hotline" data-site-tel="1">0934 37 31 37</a></li>
+      <li><a href="mailto:swanclinic.khth@gmail.com" data-site="email" data-site-mail="1">swanclinic.khth@gmail.com</a></li>
     </ul></div>
   </div>
   <div class="wrap legal">
-    <span><b>CÔNG TY TNHH SWAN CLINIC</b> · MST 0319071661 · GPHĐ KCB số 09839/HCM-GPHĐ</span>
+    <span><b>CÔNG TY TNHH SWAN CLINIC</b> · GPKD số 0319071661 do Sở Tài chính TP.HCM cấp · GPHĐ KCB số 09839/HCM-GPHĐ do Sở Y tế TP.HCM cấp</span>
     <span data-i18n="foot.legal_r">© 2026 Swan Clinic. Bảo lưu mọi quyền.</span>
   </div>
 </footer>
@@ -638,6 +703,19 @@ var T={
  "foot.tagline":{vi:"Phòng khám chuyên khoa thẩm mỹ — chuyên sâu trẻ hóa, tạo hình và thẩm mỹ tại TP. Hồ Chí Minh.",en:"Specialist aesthetic clinic — rejuvenation, contouring and aesthetics in Ho Chi Minh City.",th:"คลินิกความงามเฉพาะทาง — ฟื้นฟู ปรับรูป และความงาม ในนครโฮจิมินห์",zh:"专科医美诊所——位于胡志明市，专注年轻化、塑形与美容。",fr:"Clinique esthétique spécialisée — rajeunissement, remodelage et esthétique à Hô-Chi-Minh-Ville.",ko:"호치민시의 전문 미용 클리닉 — 안티에이징·컨투어링·미용.",km:"គ្លីនិកសម្ផស្សឯកទេស — ការធ្វើឱ្យក្មេង កែរូបរាង និងសម្ផស្ស នៅទីក្រុងហូជីមិញ។"},
  "foot.h_links":{vi:"Liên kết",en:"Links",th:"ลิงก์",zh:"链接",fr:"Liens",ko:"바로가기",km:"តំណ"},
  "foot.h_contact":{vi:"Liên hệ",en:"Contact",th:"ติดต่อ",zh:"联系",fr:"Contact",ko:"문의",km:"ទំនាក់ទំនង"},
+ "nav.news":{vi:"Tin tức",en:"News",th:"ข่าวสาร",zh:"资讯",fr:"Actualités",ko:"뉴스",km:"ព័ត៌មាន"},
+ "news.eyebrow":{vi:"Tin tức",en:"News",th:"ข่าวสาร",zh:"资讯",fr:"Actualités",ko:"뉴스",km:"ព័ត៌មាន"},
+ "news.title":{vi:"Tin tức & kiến thức",en:"News & insights",th:"ข่าวสารและความรู้",zh:"资讯与知识",fr:"Actualités & conseils",ko:"뉴스 & 지식",km:"ព័ត៌មាន និងចំណេះដឹង"},
+ "news.sub":{vi:"Hoạt động của Swan Clinic, kiến thức làm đẹp và cập nhật chính sách y tế.",en:"Swan Clinic activities, beauty knowledge and healthcare policy updates.",th:"กิจกรรมของ Swan Clinic ความรู้ความงาม และอัปเดตนโยบายสุขภาพ",zh:"Swan Clinic 动态、美容知识与医疗政策更新。",fr:"Activités de Swan Clinic, conseils beauté et actualités réglementaires.",ko:"Swan Clinic 소식, 뷰티 지식, 의료 정책 업데이트.",km:"សកម្មភាព Swan Clinic ចំណេះដឹងសម្ផស្ស និងគោលនយោបាយសុខាភិបាល។"},
+ "news.all":{vi:"Xem tất cả tin tức",en:"View all news",th:"ดูข่าวทั้งหมด",zh:"查看全部资讯",fr:"Voir toutes les actualités",ko:"모든 뉴스 보기",km:"មើលព័ត៌មានទាំងអស់"},
+ "news.empty":{vi:"Chưa có bài viết. Nội dung sẽ được cập nhật sớm.",en:"No posts yet. Content coming soon.",th:"ยังไม่มีบทความ",zh:"暂无文章。",fr:"Aucun article pour le moment.",ko:"게시물이 없습니다.",km:"មិនទាន់មានអត្ថបទ។"},
+ "news.cat1":{vi:"Tin tức Swan Clinic",en:"Swan Clinic news",th:"ข่าว Swan Clinic",zh:"Swan Clinic 动态",fr:"Actualités Swan Clinic",ko:"Swan Clinic 소식",km:"ព័ត៌មាន Swan Clinic"},
+ "news.cat2":{vi:"Giáo dục sức khỏe & Làm đẹp",en:"Health & beauty education",th:"สุขภาพและความงาม",zh:"健康与美容知识",fr:"Santé & beauté",ko:"건강 & 뷰티",km:"សុខភាព និងសម្ផស្ស"},
+ "news.cat3":{vi:"Chính sách, pháp luật y tế",en:"Healthcare policy & law",th:"นโยบายและกฎหมายสุขภาพ",zh:"医疗政策法规",fr:"Politique & droit de la santé",ko:"의료 정책·법규",km:"គោលនយោបាយ និងច្បាប់សុខាភិបាល"},
+ "about.legal":{vi:"Pháp lý & giấy phép",en:"Legal & licences",th:"เอกสารและใบอนุญาต",zh:"法律与许可",fr:"Légal & licences",ko:"법적 정보 & 면허",km:"ច្បាប់ និងអាជ្ញាប័ណ្ណ"},
+ "about.kythuat":{vi:"Xem danh mục kỹ thuật được phê duyệt",en:"View approved technical list",th:"ดูรายการเทคนิคที่ได้รับอนุมัติ",zh:"查看已批准技术目录",fr:"Voir la liste technique approuvée",ko:"승인 기술 목록 보기",km:"មើលបញ្ជីបច្ចេកទេស"},
+ "doc.creds":{vi:"Văn bằng & chứng chỉ",en:"Qualifications & certificates",th:"วุฒิบัตรและใบรับรอง",zh:"文凭与证书",fr:"Diplômes & certificats",ko:"학위 & 자격증",km:"សញ្ញាបត្រ និងវិញ្ញាបនបត្រ"},
+
  "foot.legal_r":{vi:"© 2026 Swan Clinic. Bảo lưu mọi quyền.",en:"© 2026 Swan Clinic. All rights reserved.",th:"© 2026 Swan Clinic สงวนลิขสิทธิ์",zh:"© 2026 Swan Clinic 版权所有。",fr:"© 2026 Swan Clinic. Tous droits réservés.",ko:"© 2026 Swan Clinic. 모든 권리 보유.",km:"© 2026 Swan Clinic. រក្សាសិទ្ធិគ្រប់យ៉ាង។"}
 };
 
@@ -680,6 +758,71 @@ nav.querySelectorAll('a').forEach(function(a){a.addEventListener('click',functio
 /* scroll reveal */
 var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12});
 document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+
+/* ====== CMS content loader (content/*.json) ====== */
+var CATS={"1":"news.cat1","2":"news.cat2","3":"news.cat3"};
+function esc(s){var d=document.createElement('div');d.textContent=s==null?'':String(s);return d.innerHTML;}
+function tcat(c){var k=CATS[c]||CATS["1"];var lang=(document.body.className.match(/lang-(\w+)/)||[,'vi'])[1];return (T[k]&&T[k][lang])||T[k].vi;}
+
+/* lightbox */
+var LB=document.getElementById('lb'),LBimg=LB?LB.querySelector('img'):null,LBset=[],LBi=0;
+function lbOpen(arr,i){LBset=arr;LBi=i;LBimg.src=LBset[LBi];LB.classList.add('open');}
+if(LB){
+  LB.querySelector('.lb-close').onclick=function(){LB.classList.remove('open');};
+  LB.onclick=function(e){if(e.target===LB)LB.classList.remove('open');};
+  LB.querySelector('.lb-prev').onclick=function(e){e.stopPropagation();LBi=(LBi-1+LBset.length)%LBset.length;LBimg.src=LBset[LBi];};
+  LB.querySelector('.lb-next').onclick=function(e){e.stopPropagation();LBi=(LBi+1)%LBset.length;LBimg.src=LBset[LBi];};
+}
+
+function applySite(S){
+  if(!S)return;
+  if(S.messenger){MESSENGER=S.messenger;document.querySelectorAll('.js-book').forEach(function(a){a.href=MESSENGER;});}
+  if(S.hotline){document.querySelectorAll('[data-site="hotline"]').forEach(function(el){el.textContent=S.hotline;if(el.dataset.siteTel)el.href='tel:+84'+S.hotline.replace(/\D/g,'').replace(/^0/,'');});}
+  if(S.email){document.querySelectorAll('[data-site="email"]').forEach(function(el){el.textContent=S.email;if(el.dataset.siteMail)el.href='mailto:'+S.email;});}
+  if(S.prices){Object.keys(S.prices).forEach(function(k){var el=document.querySelector('[data-price="'+k+'"]');if(el&&S.prices[k])el.textContent=S.prices[k];});}
+  var box=document.getElementById('legalBox'),docs=document.getElementById('legalDocs');
+  if(box&&docs){
+    var items=[];
+    if(S.gphd_image)items.push('<img src="'+esc(S.gphd_image)+'" alt="Giấy phép hoạt động" data-lb="legal">');
+    if(S.kythuat_visible&&S.kythuat_file)items.push('<a class="btn-doc" href="'+esc(S.kythuat_file)+'" target="_blank" rel="noopener" data-i18n="about.kythuat">Xem danh mục kỹ thuật được phê duyệt</a>');
+    if(items.length){box.style.display='';docs.innerHTML=items.join('');
+      var im=docs.querySelector('img[data-lb]');if(im)im.onclick=function(){lbOpen([im.src],0);};}
+  }
+}
+function applyDoctors(D){
+  if(!D)return;
+  var lang=(document.body.className.match(/lang-(\w+)/)||[,'vi'])[1];
+  var label=(T['doc.creds'][lang])||T['doc.creds'].vi;
+  document.querySelectorAll('.doc-creds').forEach(function(holder){
+    var d=D[holder.dataset.doc];
+    if(d&&d.creds&&d.creds.length){
+      holder.innerHTML='<button class="btn-doc">'+esc(label)+' ('+d.creds.length+')</button>';
+      holder.querySelector('button').onclick=function(){lbOpen(d.creds.map(function(c){return c.img;}),0);};
+    } else holder.innerHTML='';
+  });
+}
+function applyNews(N){
+  var grid=document.getElementById('newsGrid'),empty=document.getElementById('newsEmpty');
+  if(!grid)return;
+  var posts=(N&&N.posts||[]).filter(function(p){return p.published!==false;});
+  posts.sort(function(a,b){return (b.date||'').localeCompare(a.date||'');});
+  if(!posts.length){if(empty)empty.style.display='';return;}
+  grid.innerHTML=posts.slice(0,3).map(function(p){
+    return '<a class="news-card" href="news.html?id='+encodeURIComponent(p.id)+'">'+
+      '<div class="nc-img">'+(p.cover?'<img src="'+esc(p.cover)+'" alt="" loading="lazy">':'')+'</div>'+
+      '<div class="nc-body"><span class="nc-cat">'+esc(tcat(p.cat))+'</span>'+
+      '<span class="nc-title">'+esc(p.title)+'</span>'+
+      '<span class="nc-date">'+esc(p.date||'')+'</span></div></a>';
+  }).join('');
+}
+var SITE=null,DOCS=null,NEWSD=null;
+function loadJSON(u){return fetch(u,{cache:'no-store'}).then(function(r){return r.ok?r.json():null;}).catch(function(){return null;});}
+loadJSON('content/site.json').then(function(d){SITE=d;applySite(d);});
+loadJSON('content/doctors.json').then(function(d){DOCS=d;applyDoctors(d);});
+loadJSON('content/news.json').then(function(d){NEWSD=d;applyNews(d);});
+/* re-apply after language switch (applyLang overwrites data-i18n texts) */
+var _applyLang=applyLang;
+applyLang=function(code){_applyLang(code);applySite(SITE);applyDoctors(DOCS);applyNews(NEWSD);};
 </script>
 </body>
 </html>
