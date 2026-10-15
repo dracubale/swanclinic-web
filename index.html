@@ -210,7 +210,7 @@ body.lang-th .price-row .name,body.lang-ko .price-row .name,body.lang-zh .price-
 .price-note a{color:var(--brand-deep);font-weight:600}
 
 /* doctors */
-.docs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem;margin-top:2.6rem}
+.docs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.6rem;margin-top:2.6rem}
 .doc-card{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;transition:.28s}
 .doc-card:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
 .doc-photo{position:relative;aspect-ratio:4/5;overflow:hidden;background:var(--mist)}
@@ -484,7 +484,7 @@ body.lang-th .nc-title,body.lang-ko .nc-title,body.lang-zh .nc-title,body.lang-k
       <span class="h2-rule"></span>
       <p data-i18n="doc.sub">Bác sĩ chuyên khoa giàu kinh nghiệm, được đào tạo chính quy và liên tục cập nhật chuyên môn.</p>
     </div>
-    <div class="docs-grid">
+    <div class="docs-grid" id="docsGrid">
       <article class="doc-card reveal">
         <div class="doc-photo"><img src="img/doc-quang.jpg" alt="ThS.BSCKI Nguyễn Bá Quang" data-img="doc_quang"><div class="role"><div class="deg">ThS.BSCKI</div><h3>Nguyễn Bá Quang</h3></div></div>
         <div class="doc-body"><div class="spec" data-i18n="doc.d1_spec">Phẫu thuật tạo hình</div><p data-i18n="doc.d1_bio">Phụ trách chuyên môn phòng khám, với hơn 20 năm trong ngành Y và hơn 10 năm chuyên sâu Phẫu thuật tạo hình thẩm mỹ. Được đào tạo bài bản với văn bằng Thạc sĩ Ngoại khoa và Bác sĩ CKI Phẫu thuật tạo hình, thường xuyên cập nhật xu hướng y học tái tạo qua các hội nghị khoa học quốc tế.</p>
@@ -772,6 +772,12 @@ if(LB){
   LB.onclick=function(e){if(e.target===LB)LB.classList.remove('open');};
   LB.querySelector('.lb-prev').onclick=function(e){e.stopPropagation();LBi=(LBi-1+LBset.length)%LBset.length;LBimg.src=LBset[LBi];};
   LB.querySelector('.lb-next').onclick=function(e){e.stopPropagation();LBi=(LBi+1)%LBset.length;LBimg.src=LBset[LBi];};
+  document.addEventListener('keydown',function(e){
+    if(!LB.classList.contains('open'))return;
+    if(e.key==='Escape')LB.classList.remove('open');
+    if(e.key==='ArrowLeft'&&LBset.length>1){LBi=(LBi-1+LBset.length)%LBset.length;LBimg.src=LBset[LBi];}
+    if(e.key==='ArrowRight'&&LBset.length>1){LBi=(LBi+1)%LBset.length;LBimg.src=LBset[LBi];}
+  });
 }
 
 function applySite(S){
@@ -789,17 +795,53 @@ function applySite(S){
     if(items.length){box.style.display='';docs.innerHTML=items.join('');
       var im=docs.querySelector('img[data-lb]');if(im)im.onclick=function(){lbOpen([im.src],0);};}
   }
+  if(DOCS&&DOCS.list)applyDoctors(DOCS); /* re-render với ảnh override */
 }
+var DOC_DEFAULTS={
+  quang:{photo:"img/doc-quang.jpg",spec:"doc.d1_spec",bio:"doc.d1_bio"},
+  loc:{photo:"img/doc-loc.jpg",spec:"doc.d2_spec",bio:"doc.d2_bio"},
+  hieu:{photo:"img/doc-hieu.jpg",spec:"doc.d3_spec",bio:"doc.d3_bio"}
+};
+function tkey(k,lang){return (T[k]&&(T[k][lang]||T[k].vi))||'';}
 function applyDoctors(D){
   if(!D)return;
   var lang=(document.body.className.match(/lang-(\w+)/)||[,'vi'])[1];
-  var label=(T['doc.creds'][lang])||T['doc.creds'].vi;
+  var label=tkey('doc.creds',lang);
+  function bindCreds(holder,creds){
+    if(creds&&creds.length){
+      holder.innerHTML='<button class="btn-doc">'+esc(label)+' ('+creds.length+')</button>';
+      holder.querySelector('button').onclick=function(){lbOpen(creds.map(function(c){return c.img;}),0);};
+    } else holder.innerHTML='';
+  }
+  var grid=document.getElementById('docsGrid');
+  if(D.list&&D.list.length&&grid){
+    /* render toàn bộ danh sách bác sĩ từ CMS */
+    var html='';
+    D.list.forEach(function(d){
+      if(d.visible===false)return;
+      var def=DOC_DEFAULTS[d.id]||{};
+      var photo=d.photo||(SITE&&SITE.images&&SITE.images['doc_'+d.id])||def.photo||'';
+      var spec=d.spec||(def.spec?tkey(def.spec,lang):'');
+      var bio=d.bio||(def.bio?tkey(def.bio,lang):'');
+      html+='<article class="doc-card reveal in">'
+        +'<div class="doc-photo">'+(photo?'<img src="'+esc(photo)+'" alt="'+esc((d.deg||'')+' '+(d.name||''))+'" loading="lazy">':'')
+        +'<div class="role"><div class="deg">'+esc(d.deg||'')+'</div><h3>'+esc(d.name||'')+'</h3></div></div>'
+        +'<div class="doc-body"><div class="spec">'+esc(spec)+'</div><p>'+esc(bio)+'</p>'
+        +'<div class="doc-creds" data-doc="'+esc(d.id)+'"></div></div></article>';
+    });
+    if(html){
+      grid.innerHTML=html;
+      D.list.forEach(function(d){
+        var holder=grid.querySelector('.doc-creds[data-doc="'+CSS.escape(d.id)+'"]');
+        if(holder)bindCreds(holder,d.creds);
+      });
+      return;
+    }
+  }
+  /* schema cũ: chỉ gắn nút văn bằng vào 3 thẻ tĩnh */
   document.querySelectorAll('.doc-creds').forEach(function(holder){
     var d=D[holder.dataset.doc];
-    if(d&&d.creds&&d.creds.length){
-      holder.innerHTML='<button class="btn-doc">'+esc(label)+' ('+d.creds.length+')</button>';
-      holder.querySelector('button').onclick=function(){lbOpen(d.creds.map(function(c){return c.img;}),0);};
-    } else holder.innerHTML='';
+    bindCreds(holder,d&&d.creds);
   });
 }
 function applyNews(N){

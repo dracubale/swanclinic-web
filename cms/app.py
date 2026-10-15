@@ -388,46 +388,209 @@ def news_rmimg(req: Request, pid: str, u: str = ""):
     jsave(P_NEWS, N)
     return RedirectResponse(f"/admin/news/edit/{pid}", 302)
 
-# ==== BÁC SĨ (văn bằng & chứng chỉ) ====
+# ==== BÁC SĨ (thông tin, chân dung, văn bằng, thêm/ẩn/sắp xếp) ====
+DOC_DEFAULTS = {
+    "quang": {"deg": "ThS.BSCKI", "name": "Nguyễn Bá Quang",   "photo": "img/doc-quang.jpg"},
+    "loc":   {"deg": "BSCKI",     "name": "Trần Đức Lộc",      "photo": "img/doc-loc.jpg"},
+    "hieu":  {"deg": "BSCKI",     "name": "Nguyễn Trung Hiếu", "photo": "img/doc-hieu.jpg"},
+}
+CORE_DOCS = list(DOC_DEFAULTS.keys())
+
+def doctors_list():
+    """Đọc doctors.json; tự chuyển schema cũ {quang:{creds}} sang danh sách mới."""
+    D = jload(P_DOCTORS, {})
+    if isinstance(D.get("list"), list) and D["list"]:
+        return D["list"]
+    lst = []
+    for key, d in DOC_DEFAULTS.items():
+        lst.append({"id": key, "deg": d["deg"], "name": d["name"], "spec": "", "bio": "",
+                    "photo": "", "visible": True,
+                    "creds": (D.get(key) or {}).get("creds", [])})
+    return lst
+
+def doctors_store(lst):
+    jsave(P_DOCTORS, {"list": lst})
+
+def doc_find(lst, did):
+    return next((d for d in lst if d.get("id") == did), None)
+
 @app.get("/admin/doctors", response_class=HTMLResponse)
 def doctors_page(req: Request, msg: str = ""):
     r = need_login(req)
     if r: return r
-    D = jload(P_DOCTORS, {})
-    body = '<div class="card"><h2>Văn bằng &amp; chứng chỉ của bác sĩ</h2><p class="note">Ảnh sẽ hiện trên website ở nút "Văn bằng &amp; chứng chỉ" trong thẻ từng bác sĩ. Lưu ý làm mờ thông tin cá nhân (số CCCD, địa chỉ nhà...) trước khi upload.</p></div>'
-    for key, name in DOCTORS.items():
-        creds = D.get(key, {}).get("creds", [])
-        imgs = "".join(f'<div class="c"><img src="/{c["img"]}"><br><a class="btn sm red" href="/admin/doctors/rm/{key}?u={c["img"]}" onclick="return confirm(\'Xoá ảnh?\')">Xoá</a></div>' for c in creds)
-        body += f"""<div class="card"><h3>{name} <span class="badge">{len(creds)} ảnh</span></h3>
-<div class="creds">{imgs or '<span class="note">Chưa có ảnh.</span>'}</div>
-<form method="post" action="/admin/doctors/add/{key}" enctype="multipart/form-data">
+    lst = doctors_list()
+    body = ('<div class="card"><h2>Đội ngũ bác sĩ</h2>'
+            '<p class="note">Sửa thông tin, thay ảnh chân dung, quản lý văn bằng, thêm bác sĩ mới. '
+            'Với 3 bác sĩ gốc: ô Chuyên môn / Giới thiệu bỏ trống = dùng nội dung gốc (có đủ 7 ngôn ngữ); '
+            'nhập chữ = thay thế (áp cho mọi ngôn ngữ). Văn bằng: nhớ làm mờ thông tin cá nhân trước khi upload.</p></div>')
+    n = len(lst)
+    for i, d in enumerate(lst):
+        did = d["id"]; core = did in CORE_DOCS
+        photo = d.get("photo") or DOC_DEFAULTS.get(did, {}).get("photo", "")
+        pimg = f'<img src="/{photo}" style="width:120px;aspect-ratio:4/5;object-fit:cover;border-radius:10px;border:1px solid var(--line)">' if photo else '<span class="note">Chưa có ảnh</span>'
+        vis = d.get("visible", True)
+        creds = d.get("creds", [])
+        cimgs = "".join(
+            f'<div class="c"><img src="/{c["img"]}"><br><a class="btn sm red" href="/admin/doctors/rmcred/{did}?u={c["img"]}" onclick="return confirm(&quot;Xoá ảnh?&quot;)">Xoá</a></div>'
+            for c in creds)
+        up = f'<a class="btn sm gray" href="/admin/doctors/move/{did}?dir=up">⬆</a>' if i > 0 else ''
+        down = f'<a class="btn sm gray" href="/admin/doctors/move/{did}?dir=down">⬇</a>' if i < n - 1 else ''
+        delete = '' if core else f'<a class="btn sm red" href="/admin/doctors/delete/{did}" onclick="return confirm(&quot;Xoá bác sĩ này? Văn bằng kèm theo cũng bị gỡ.&quot;)">Xoá</a>'
+        badge = '<span class="badge">Đang hiện</span>' if vis else '<span class="badge off">Đang ẩn</span>'
+        ph_note = ' <span class="note">(gốc — đa ngôn ngữ)</span>' if core else ''
+        body += f"""<div class="card"><h3>{d.get('deg','')} {d.get('name','')} {badge}
+<span style="float:right">{up} {down}
+<a class="btn sm gray" href="/admin/doctors/toggle/{did}">{'Ẩn' if vis else 'Hiện'}</a> {delete}</span></h3>
+<div class="grid2" style="grid-template-columns:140px 1fr;align-items:start">
+<div>{pimg}</div>
+<form method="post" action="/admin/doctors/save/{did}" enctype="multipart/form-data">
+<div class="grid2">
+<div><label>Học vị / chức danh</label><input type="text" name="deg" value="{d.get('deg','')}" placeholder="BSCKI"></div>
+<div><label>Họ tên *</label><input type="text" name="name" value="{d.get('name','')}" required></div>
+</div>
+<label>Chuyên môn{ph_note}</label><input type="text" name="spec" value="{d.get('spec','')}" data-def-spec="{did}">
+<label>Giới thiệu{ph_note}</label><textarea name="bio" rows="3" data-def-bio="{did}">{d.get('bio','')}</textarea>
+<label>Thay ảnh chân dung (ảnh dọc 4:5 đẹp nhất)</label><input type="file" name="photo" accept="image/*">
+<div style="margin-top:.6rem"><button class="btn sm">💾 Lưu thông tin</button></div>
+</form></div>
+<h3 style="margin-top:1rem">Văn bằng &amp; chứng chỉ <span class="badge">{len(creds)} ảnh</span></h3>
+<div class="creds">{cimgs or '<span class="note">Chưa có ảnh.</span>'}</div>
+<form method="post" action="/admin/doctors/addcred/{did}" enctype="multipart/form-data">
 <input type="file" name="files" accept="image/*" multiple required>
-<button class="btn sm" style="margin-top:.5rem">⬆ Tải ảnh lên</button></form></div>"""
+<button class="btn sm" style="margin-top:.5rem">⬆ Tải văn bằng lên</button></form></div>"""
+    body += """<div class="card"><h2>+ Thêm bác sĩ mới</h2>
+<form method="post" action="/admin/doctors/new" enctype="multipart/form-data">
+<div class="grid2">
+<div><label>Học vị / chức danh</label><input type="text" name="deg" placeholder="BSCKI"></div>
+<div><label>Họ tên *</label><input type="text" name="name" required></div>
+</div>
+<label>Chuyên môn *</label><input type="text" name="spec" required placeholder="vd: Da liễu thẩm mỹ">
+<label>Giới thiệu *</label><textarea name="bio" rows="3" required placeholder="Vài dòng về kinh nghiệm, bằng cấp..."></textarea>
+<label>Ảnh chân dung (ảnh dọc 4:5)</label><input type="file" name="photo" accept="image/*">
+<div style="margin-top:.8rem"><button class="btn">+ Thêm bác sĩ</button></div>
+</form></div>
+<script>
+/* hiện nội dung gốc (VI) làm placeholder cho 3 bác sĩ gốc */
+fetch('/index.html').then(function(r){return r.text();}).then(function(s){
+  var m=s.match(/var T=\\{[\\s\\S]*?\\};/); if(!m)return;
+  var T=new Function('return '+m[0].slice(6,-1))();
+  var map={quang:['doc.d1_spec','doc.d1_bio'],loc:['doc.d2_spec','doc.d2_bio'],hieu:['doc.d3_spec','doc.d3_bio']};
+  Object.keys(map).forEach(function(k){
+    var sp=document.querySelector('[data-def-spec="'+k+'"]'),bi=document.querySelector('[data-def-bio="'+k+'"]');
+    if(sp&&!sp.value&&T[map[k][0]])sp.placeholder=T[map[k][0]].vi;
+    if(bi&&!bi.value&&T[map[k][1]])bi.placeholder=T[map[k][1]].vi;
+  });
+}).catch(function(){});
+</script>"""
     return page(req, "doctors", body, msg=msg)
 
-@app.post("/admin/doctors/add/{key}")
-async def doctors_add(req: Request, key: str):
+@app.post("/admin/doctors/save/{did}")
+async def doctors_save_one(req: Request, did: str):
     r = need_login(req)
     if r: return r
-    if key not in DOCTORS: return RedirectResponse("/admin/doctors", 302)
     form = await req.form()
-    D = jload(P_DOCTORS, {})
-    D.setdefault(key, {"creds": []})
-    for f in form.getlist("files"):
-        if getattr(f, "filename", ""):
-            D[key]["creds"].append({"img": save_upload(f), "label": ""})
-    jsave(P_DOCTORS, D)
-    return RedirectResponse("/admin/doctors?msg=Đã tải ảnh lên.", 302)
+    lst = doctors_list()
+    d = doc_find(lst, did)
+    if d:
+        d["deg"] = str(form.get("deg", "")).strip()
+        d["name"] = str(form.get("name", "")).strip() or d.get("name", "")
+        d["spec"] = str(form.get("spec", "")).strip()
+        d["bio"] = str(form.get("bio", "")).strip()
+        f = form.get("photo")
+        if f and getattr(f, "filename", ""):
+            d["photo"] = save_upload(f)
+        doctors_store(lst)
+    return RedirectResponse("/admin/doctors?msg=Đã lưu thông tin bác sĩ.", 302)
+
+@app.post("/admin/doctors/new")
+async def doctors_new(req: Request):
+    r = need_login(req)
+    if r: return r
+    form = await req.form()
+    lst = doctors_list()
+    d = {"id": "bs" + uuid.uuid4().hex[:8],
+         "deg": str(form.get("deg", "")).strip(),
+         "name": str(form.get("name", "")).strip(),
+         "spec": str(form.get("spec", "")).strip(),
+         "bio": str(form.get("bio", "")).strip(),
+         "photo": "", "visible": True, "creds": []}
+    if not d["name"]:
+        return RedirectResponse("/admin/doctors?msg=Thiếu họ tên.", 302)
+    f = form.get("photo")
+    if f and getattr(f, "filename", ""):
+        d["photo"] = save_upload(f)
+    lst.append(d)
+    doctors_store(lst)
+    return RedirectResponse("/admin/doctors?msg=Đã thêm bác sĩ.", 302)
+
+@app.get("/admin/doctors/toggle/{did}")
+def doctors_toggle(req: Request, did: str):
+    r = need_login(req)
+    if r: return r
+    lst = doctors_list()
+    d = doc_find(lst, did)
+    if d:
+        d["visible"] = not d.get("visible", True)
+        doctors_store(lst)
+    return RedirectResponse("/admin/doctors", 302)
+
+@app.get("/admin/doctors/move/{did}")
+def doctors_move(req: Request, did: str, dir: str = "up"):
+    r = need_login(req)
+    if r: return r
+    lst = doctors_list()
+    for i, d in enumerate(lst):
+        if d.get("id") == did:
+            j = i - 1 if dir == "up" else i + 1
+            if 0 <= j < len(lst):
+                lst[i], lst[j] = lst[j], lst[i]
+                doctors_store(lst)
+            break
+    return RedirectResponse("/admin/doctors", 302)
+
+@app.get("/admin/doctors/delete/{did}")
+def doctors_delete(req: Request, did: str):
+    r = need_login(req)
+    if r: return r
+    if did in CORE_DOCS:
+        return RedirectResponse("/admin/doctors?msg=Bác sĩ gốc chỉ có thể Ẩn, không xoá.", 302)
+    lst = [d for d in doctors_list() if d.get("id") != did]
+    doctors_store(lst)
+    return RedirectResponse("/admin/doctors?msg=Đã xoá bác sĩ.", 302)
+
+@app.post("/admin/doctors/addcred/{did}")
+async def doctors_addcred(req: Request, did: str):
+    r = need_login(req)
+    if r: return r
+    form = await req.form()
+    lst = doctors_list()
+    d = doc_find(lst, did)
+    if d:
+        for f in form.getlist("files"):
+            if getattr(f, "filename", ""):
+                d.setdefault("creds", []).append({"img": save_upload(f), "label": ""})
+        doctors_store(lst)
+    return RedirectResponse("/admin/doctors?msg=Đã tải văn bằng lên.", 302)
+
+@app.get("/admin/doctors/rmcred/{did}")
+def doctors_rmcred(req: Request, did: str, u: str = ""):
+    r = need_login(req)
+    if r: return r
+    lst = doctors_list()
+    d = doc_find(lst, did)
+    if d:
+        d["creds"] = [c for c in d.get("creds", []) if c.get("img") != u]
+        doctors_store(lst)
+    return RedirectResponse("/admin/doctors", 302)
+
+# giữ 2 đường dẫn cũ để khỏi gãy liên kết cũ
+@app.post("/admin/doctors/add/{key}")
+async def doctors_add_legacy(req: Request, key: str):
+    return await doctors_addcred(req, key)
 
 @app.get("/admin/doctors/rm/{key}")
-def doctors_rm(req: Request, key: str, u: str = ""):
-    r = need_login(req)
-    if r: return r
-    D = jload(P_DOCTORS, {})
-    if key in D:
-        D[key]["creds"] = [c for c in D[key].get("creds", []) if c.get("img") != u]
-    jsave(P_DOCTORS, D)
-    return RedirectResponse("/admin/doctors", 302)
+def doctors_rm_legacy(req: Request, key: str, u: str = ""):
+    return doctors_rmcred(req, key, u)
 
 # ==== PHÁP LÝ ====
 @app.get("/admin/legal", response_class=HTMLResponse)

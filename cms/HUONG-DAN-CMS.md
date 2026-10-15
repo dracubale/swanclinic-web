@@ -50,3 +50,13 @@ cd /opt/swanclinic-src && git pull
 cp /opt/swanclinic-src/cms/app.py /opt/swan-cms/app.py 2>/dev/null || cp $(find /opt/swanclinic-src -path '*/cms/app.py' | head -1) /opt/swan-cms/app.py
 systemctl restart swan-cms
 ```
+
+## Tab 👨‍⚕️ Bác sĩ (bản nâng cấp 10/2026)
+- **Sửa thông tin** từng bác sĩ: học vị, họ tên, chuyên môn, giới thiệu.
+  Với 3 bác sĩ gốc: bỏ trống Chuyên môn/Giới thiệu = giữ nội dung gốc (đủ 7 ngôn ngữ,
+  hiện màu xám làm gợi ý); nhập chữ = thay thế (áp mọi ngôn ngữ).
+- **Thay ảnh chân dung** (ảnh dọc 4:5 đẹp nhất, tự nén).
+- **+ Thêm bác sĩ mới**: nhập đủ học vị, tên, chuyên môn, giới thiệu, ảnh — hiện ngay trên web.
+- **Ẩn/Hiện** bất kỳ bác sĩ nào (bác sĩ nghỉ → Ẩn). 3 bác sĩ gốc không xoá được, chỉ Ẩn.
+- **⬆⬇** đổi thứ tự hiển thị. **Xoá** với bác sĩ thêm mới.
+- Văn bằng & chứng chỉ: upload/xoá như cũ (nhớ làm mờ thông tin cá nhân).
